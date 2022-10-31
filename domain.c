@@ -26,7 +26,7 @@ void Title()
 	curPos.X = 60; curPos.Y = 15;
 	SetCurrentCursorPos(curPos.X, curPos.Y);
 	textcolor(14);
-	printf("내일은 주식왕!!!\n테스트테스트\n이차테스트");
+	printf("내일은 주식왕!!!\n 3차테스트, 3차테스트");
 	getchar();
 	textcolor(15);
 }
