@@ -30,20 +30,6 @@ int main()
 	return 0;
 }
 
-void Title()
-{
-	COORD curPos;
-	//curPos = GetCurrentCursorPos();
-	//주식투자 5계명도 써주세용
-
-	curPos.X = 60; curPos.Y = 15;
-	SetCurrentCursorPos(curPos.X, curPos.Y);
-	textcolor(14);
-	printf("내일은 주식왕!!!\n");
-	getchar();
-	textcolor(15);
-}
-
 void EVENT()
 {
 	EVENT_LIST = (char**)malloc(sizeof(char*)*20);

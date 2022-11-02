@@ -21,3 +21,4 @@ void Title()
 	printf("내일은 주식왕!!!\n");
 	getchar();
 	textcolor(15);
+}
