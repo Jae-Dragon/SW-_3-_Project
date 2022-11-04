@@ -11,10 +11,12 @@
 #include "visible.h"
 
 char EventList[30][30];
+char StockList[5][30];
 
 void Title();
 
-void EVENT();
+void Stock();
+void Event();
 
 int main()
 {
@@ -23,16 +25,26 @@ int main()
 	//cols = 칸/행 (가로)  lines = 줄/열 (세로)
 
 	Title();
-	EVENT();
+	Event();
 
 	return 0;
 }
 
-void EVENT()
+void Stock()
 {
+	strcpy(StockList[0], "제약");
+	strcpy(StockList[1], "방산");
+	strcpy(StockList[2], "반도체");
+	strcpy(StockList[3], "조선");
+	strcpy(StockList[4], "제철");
+}
 
-	strcpy(EventList[0], "전염병 발생");//제약회사 주가 상승
-	strcpy(EventList[1], "백신 부작용 발생");//제약회사 주가 하락
+void Event()
+{
+	//짝수번째 --> 주가하락 사유,  홀수번째 --> 주가상승 사유
+
+	strcpy(EventList[0], "백신 부작용 발생전염병");//제약회사 주가 하락
+	strcpy(EventList[1], "발생");//제약회사 주가 상승
 
 	strcpy(EventList[2], "방산업체에서 비리 발생");//방산 관련 주가 하락
 	strcpy(EventList[3], "북한이 동해안으로 미사일 발사");//방상 관련 주가 상승
