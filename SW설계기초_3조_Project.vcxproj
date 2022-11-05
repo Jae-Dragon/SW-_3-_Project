@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="container.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="StockMarket.h" />
     <ClInclude Include="visible.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
