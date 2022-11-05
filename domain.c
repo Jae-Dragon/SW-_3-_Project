@@ -27,22 +27,19 @@ int Random(int min, int max);
 void Opinion(int* Choice, char * YorN);
 void Drawingmarket();
 void EraseMarket();
+void EraseOpinion();
+void StockMarket();
 
 int main()
 {
 	RemoveCursor();
 	system("mode con cols=130 lines=34");
 	//cols = 칸/행 (가로)  lines = 줄/열 (세로)
+	//Title();
+	Event();//초기에 이벤트 리스트 삽입 위해 실행 필요
+	Stock();//초기 투자종목 리스트 삽입 위해 실행 필요
 
-	/*
-	Title();
-	Event();
-	Stock();
-	int a;
-	char YORN;
-	Opinion(&a, &YORN);
-	*/
-	Drawingmarket();
+	StockMarket();
 
 
 	return 0;
@@ -85,6 +82,7 @@ void Event()
 
 	int random;
 
+	/*
 	for (int i = 0; i < 10; i++)
 	{
 		random = Random(0, 15);
@@ -93,7 +91,7 @@ void Event()
 
 		Sleep(1000);
 	}
-
+	*/
 }
 
 int Random(int min, int max)
@@ -108,19 +106,19 @@ int Random(int min, int max)
 void Opinion(int* Choice, char* YorN)
 {
 	textcolor(13);
-	gotoxy(7, 6);
+	gotoxy(14,8);
 	printf("투자상품 목록");
 
 	textcolor(15);
-	gotoxy(7, 8);
-	printf("1.%s, 2.%s, 3.%s, 4.%s, 5.%s, 6.없음", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
+	gotoxy(14, 10);
+	printf("1.%s, 2.%s, 3.%s, 4.%s, 5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
 
-	gotoxy(7, 10);
+	gotoxy(14, 12);
 	printf("상품에 투자하고 싶으시면 Y를, 아니라면 N을 입력해주세요: ");
 	scanf("%c", YorN);
 
 
-	gotoxy(7, 12);
+	gotoxy(14, 14);
 	printf("투자하고 싶은 상품의 번호를 입력하세요: ");
 	scanf("%d", Choice);
 	
@@ -193,4 +191,94 @@ void Drawingmarket()
 
 void EraseMarket()
 {
+	int x, y;
+
+	for (x = 2; x <= 2 * Market_WIDTH + 16; x++) {
+		SetCurrentCursorPos(Market_ORIGIN_X + x - 8, Market_ORIGIN_Y);
+
+		printf("  ");
+	}
+	x = 0; y = 0;
+	for (int i = 0; i < 7; i++)
+	{
+		SetCurrentCursorPos(Market_ORIGIN_X + x - 6, Market_ORIGIN_Y - y);
+		printf("  ");
+		x++; y++;
+	}
+	x = 0; y = 0;
+	for (int i = 0; i < 7; i++)
+	{
+		SetCurrentCursorPos(Market_ORIGIN_X + x + Market_WIDTH * 2 + 4, Market_ORIGIN_Y + y - 6);
+		printf("  ");
+		x++; y++;
+	}
+	for (x = 2; x <= 2 * Market_WIDTH + 6; x++) {
+		SetCurrentCursorPos(Market_ORIGIN_X + x - 2, Market_ORIGIN_Y - 6);
+
+		printf("  ");
+	}
+	//===============================
+
+	for (y = 0; y <= Market_HEIGHT; y++) {
+		SetCurrentCursorPos(Market_ORIGIN_X, Market_ORIGIN_Y + y);
+
+		if (y == Market_HEIGHT) {
+			printf("  ");
+		}
+
+		else {
+			printf("  ");
+		}
+	}
+
+
+	for (x = 2; x <= 2 * Market_WIDTH; x++) {
+		SetCurrentCursorPos(Market_ORIGIN_X + x, Market_ORIGIN_Y + Market_HEIGHT);
+
+		printf("  ");
+	}
+
+	for (y = 0; y <= Market_HEIGHT; y++) {
+		SetCurrentCursorPos(Market_ORIGIN_X + 2 * Market_WIDTH + 2, Market_ORIGIN_Y + y);//
+
+		if (y == Market_HEIGHT) {
+			printf("  ");
+		}
+
+		else {
+			printf("  ");
+		}
+	}
+
+}
+
+void EraseOpinion()
+{
+	textcolor(13);
+	gotoxy(14, 8);
+	printf("                                                               ");
+
+	textcolor(15);
+	gotoxy(14, 10);
+	printf("                                                               ");
+
+	gotoxy(14, 12);
+	printf("                                                               ");
+
+	gotoxy(14, 14);
+	printf("                                                               ");
+
+}
+
+void StockMarket()
+{
+	int a;
+	char YORN;
+
+	Drawingmarket();//거래소 형태 그려주기
+	Opinion(&a, &YORN);//플레이어의 선택 수용
+	Sleep(600);
+
+	EraseMarket();//맨 마지막 달리기 화면으로 전환하기 전 거래소를 지워줌
+	EraseOpinion();
 }
