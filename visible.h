@@ -17,8 +17,56 @@ void Title()
 
 	curPos.X = 60; curPos.Y = 15;
 	SetCurrentCursorPos(curPos.X, curPos.Y);
-	textcolor(14);
+
+    textcolor(14);
 	printf("頂橾擎 輿衝諾!!!\n");
 	getchar();
 	textcolor(15);
+}
+void Background()
+{
+    gotoxy(0, 35);
+    for (int i = 0; i < 15; i++)
+        printf("式式式式式式式式");
+}
+
+void Ant()
+{
+    int leg = 0;
+    while (1)
+    {
+        Background();
+        gotoxy(0, 20);
+
+        printf("            ﹥  ﹥  \n");
+        printf("            ﹥  ﹥  \n");
+        printf("        ﹥﹥﹥﹥﹥  \n");
+        printf("        ﹥﹥﹥  ﹥  \n");
+        printf("        ﹥﹥﹥﹥﹥  \n");
+        printf("        ﹥﹥﹥﹥﹥  \n");
+        printf("          ﹥﹥﹥    \n");
+        printf("      ﹥﹥﹥﹥﹥﹥﹥\n");
+        printf("  ﹥﹥﹥﹥﹥﹥﹥  ﹥\n");
+        printf("﹥﹥﹥﹥﹥﹥﹥﹥﹥  \n");
+        printf("﹥﹥﹥﹥﹥﹥﹥  ﹥  \n");
+        printf("﹥﹥﹥﹥﹥﹥        \n");
+        printf("  ﹥﹥﹥﹥          \n");
+        if (leg == 0)
+        {
+            printf("  ﹥    ﹥﹥﹥      \n");
+            printf("  ﹥﹥              \n");
+            leg = 1;
+        }
+        else
+        {
+            printf("  ﹥﹥  ﹥          \n");
+            printf("        ﹥﹥        \n");
+            leg = 0;
+        }
+
+        Sleep(100);
+        system("cls");
+    }
+
+
 }
