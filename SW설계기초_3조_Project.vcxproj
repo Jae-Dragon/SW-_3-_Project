@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClInclude Include="container.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="item.h" />
+    <ClInclude Include="status.h" />
     <ClInclude Include="StockMarket.h" />
     <ClInclude Include="visible.h" />
   </ItemGroup>

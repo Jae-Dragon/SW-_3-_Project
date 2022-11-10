@@ -5,8 +5,16 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <time.h>
-#include "container.h"
 #include <string.h>
+
+
+//분할 작업을 위해 각자 독립된 헤더파일을 사용
+#include "container.h"//기본적인 window.h 함수들을 넣어두는 곳(ex. getcurrentcursorpos...)
+#include "define.h"//전역 변수 및 정의들을 모아두는 곳
+#include "visible.h"//기본적으로 출력만 실행하는 함수들만 모아두는 곳(유진 담당)
+#include "StockMarket.h"//거래소 관련 함수들만 모아두는 곳(재용 담당)
+#include "item.h"//아이템 관련 함수들만 모아두는 곳(언약 담당)
+#include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
 
 void Title()
@@ -41,8 +49,6 @@ int GetKeyDown()
 
 void Ant()
 {
-
-
     int isJumping = 0;
     int isBottom = 1;
     const int gravity = 3;
@@ -116,6 +122,13 @@ void Ant()
 
         Sleep(10);
         system("cls");
+        distance++;
+       
+        if (distance != 0 && distance % 20 == 0)//거래소 입장 위해
+        {
+            StockMarket();
+        }
+        
     }
 
 }
