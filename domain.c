@@ -18,14 +18,16 @@
 int main()
 {
 	RemoveCursor();
-	system("mode con cols=180 lines=44");
+	system("mode con cols=180 lines=44 | title 내일은 투자왕!");
 	//cols = 칸/행 (가로)  lines = 줄/열 (세로)
 	Title();
-	Event();//초기에 이벤트 리스트 삽입 위해 실행 필요
-	Stock();//초기 투자종목 리스트 삽입 위해 실행 필요
+	setName();
+	setLevel();
+	//Event();//초기에 이벤트 리스트 삽입 위해 실행 필요
+	//Stock();//초기 투자종목 리스트 삽입 위해 실행 필요
 
 	//StockMarket();	
-	Ant();
+	movingAnt();
    
 
 	return 0;
