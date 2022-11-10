@@ -23,12 +23,12 @@ char StockList[30][30];
 void Stock()
 {
 	//정수 입력받고 그 선택의 번호 반환
-
+	strcpy(StockList[0], "바이오");//0, 1
 	strcpy(StockList[1], "방산");//2, 3
 	strcpy(StockList[2], "반도체");
 	strcpy(StockList[3], "조선");
-	strcpy(StockList[4], "제철");
-	strcpy(StockList[0], "바이오");//0, 1
+	strcpy(StockList[4], "자동차");
+
 }
 
 void Event()
@@ -67,6 +67,13 @@ void Event()
 	strcpy(EventList1[19], "반도체 공급난으로 인한 미국의 반도체 사업 지원 강화");//조선 관련 주가 상승
 	strcpy(EventList1[20], "카타르와의 LNG 운반선 비용문제를 두고 갈등 발생");//조선 관련 주가 하락(선박의 주요 원자재)
 	strcpy(EventList1[21], "카타르와의 LNG 운반선 관련 최종 계약 도달");//조선 관련 주가 상승
+
+	strcpy(EventList1[22], "자율 주행 자동차 기능 오류로 인한 인명피해 발생");//자동차 관련 주가 하락
+	strcpy(EventList1[23], "현대차와 기아차의 중고차 시장 진출");//자동차 관련 주가 상승
+	strcpy(EventList1[24], "정부의 한 가정 당 보유 차의 수에 대한 규제 시작");//자동차 관련 주가 하락
+	strcpy(EventList1[25], "현대차가 장기간 개발한 SUV 출시");//자동차 관련 주가 상승
+	strcpy(EventList1[26], "환경오염을 막기 위한 정부의 대중교통 가격 완화");//자동차 관련 주가 하락
+	strcpy(EventList1[27], "역사에 기록될 폭우로 인한 다수 차 침수");//자동차 관련 주가 상승
 
 	//==================================================================================================================
 	strcpy(EventList2[0], "전체적인 원자재 가격의 상승");//주가 하락
@@ -122,19 +129,21 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 
 	gotoxy(32, 21);
 	Sleep(100);
+	textcolor(14);
 	printf("상품에 투자하고 싶으시면 Y를, 아니라면 N을 입력해주세요: ");
 	scanf("%c", YorN);
 	getchar();
 	Sleep(50);
 	if (*YorN == 'N') return;
 
+	textcolor(12);
 	gotoxy(32, 23);
-	printf("투자하고 싶은 상품의 번호를 입력하세요");
-
+	printf("(Hint: 보통 종목별 호재가 주식시장에서 파워가 강합니다.");//다음부터 작업할 부분
 	gotoxy(32, 24);
-	printf("(최대 2개까지 가능, 2개 중 1개에만 투자 가능)");//다음부터 작업할 부분
+	printf(" 몇가지 사례를 제외한다면 말이죠.)");
 	gotoxy(32, 26);
-	printf("번호를 입력하십시오: ");//다음부터 작업할 부분
+	textcolor(14);
+	printf("투자하고 싶은 상품의 번호를 입력하세요: ");//다음부터 작업할 부분
 	scanf("%d", Choice);
 
 
@@ -293,24 +302,81 @@ void EraseOpinion()
 
 int Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//왼쪽부터 차례대로 투자여부, 종목 선택, 랜덤 이벤트
 {
+	int revenue = 0;
 	if (YorN == 'N') return 0;
 	
-	
+	//EventList2에서 각 종목에서 짝수번째는 악재, 홀수번째는 호재임
+	//0~21 
+	else {
+		if (RandEvent2 % 2 == 0)
+			revenue -= gold * 0.2;
+		else
+			revenue += gold * 0.1;
+	}
+
+
+
 	//EventList1에서 각 종목에서 짝수번째는 악재, 홀수번째는 호재임
 	//0~5는 바이오 관련, // 6~11은 방산 관련 // 12~17은 반도체 관련 // 18~21은 조선 관련
 
-	//EventList2에서 각 종목에서 짝수번째는 악재, 홀수번째는 호재임
-	//0~21 
+	if (RandEvent1 % 2 == 0)//악재일 때
+	{
+		if (RandEvent1 >= 0 && RandEvent1 <= 5)//바이오 관련 주라면
+		{
+			if (Choice == 1) revenue -= gold * 0.4;
+		}
+		if (RandEvent1 >= 6 && RandEvent1 <= 11)//방산 관련 주라면
+		{
+			if (Choice == 2) revenue -= gold * 0.4;
+		}
+		if (RandEvent1 >= 12 && RandEvent1 <= 17)//반도체 관련 주라면
+		{
+			if (Choice == 3) revenue -= gold * 0.4;
+		}
+		if (RandEvent1 >= 18 && RandEvent1 <= 21)//반도체 관련 주라면
+		{
+			if (Choice == 4) revenue -= gold * 0.4;
+		}
+		if (RandEvent1 >= 22 && RandEvent1 <= 27)//자동차 관련 주라면
+		{
+			if (Choice == 5) revenue -= gold * 0.4;
+		}
+	}
+
+	else//호재일 때
+	{
+		if (RandEvent1 >= 0 && RandEvent1 <= 5)//바이오 관련 주라면
+		{
+			if (Choice == 1) revenue += gold * 0.2;
+		}
+		if (RandEvent1 >= 6 && RandEvent1 <= 11)//방산 관련 주라면
+		{
+			if (Choice == 2) revenue += gold * 0.2;
+		}
+		if (RandEvent1 >= 12 && RandEvent1 <= 17)//반도체 관련 주라면
+		{
+			if (Choice == 3) revenue += gold * 0.2;
+		}
+		if (RandEvent1 >= 18 && RandEvent1 <= 21)//반도체 관련 주라면
+		{
+			if (Choice == 4) revenue += gold * 0.2;
+		}
+		if (RandEvent1 >= 22 && RandEvent1 <= 27)//자동차 관련 주라면
+		{
+			if (Choice == 5) revenue += gold * 0.2;
+		}
+	}
+
 
 	//우선 각 종목 관련 수익률 기준을 정해야 함
 	//EventList2에서 발생하는 사건들 중 주가에 크게 영향을 미치는 부분과 그렇지 않은 부분을 나눠야 함
 
-	
+	return revenue;
 }
 
 void StockMarket()
 {
-	int Choice, random1, random2, revenue;
+	int Choice, random1, random2, revenue = 0;
 	char YORN;
 
 	Drawingmarket();//거래소 형태 그려주기
@@ -321,7 +387,7 @@ void StockMarket()
 	revenue = Result(YORN, Choice, random1, random2);//수익률 반환
 	//그러면 전역변수로 선언한 Gold에 + - revenue를 해줌
 
-
+	gold += revenue;//골드에 수익률 반환해줌
 
 
 	//이 밑으로는 모든 작업이 끝난 후에 실행

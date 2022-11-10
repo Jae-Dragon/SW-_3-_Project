@@ -6,3 +6,4 @@
 #define Market_ORIGIN_Y 14
 
 int distance = 0;//비거리에 따른 거래소 호출을 위해 호출
+int gold = 0;

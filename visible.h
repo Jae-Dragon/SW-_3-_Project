@@ -35,7 +35,7 @@ void Background()
 {
     gotoxy(0, 35);
     for (int i = 0; i < 15; i++)
-        printf("────────");
+        printf("───────────");
 }
 // 키보드 입력된 값을 반환하는 함수
 int GetKeyDown()
@@ -124,7 +124,7 @@ void Ant()
         system("cls");
         distance++;
        
-        if (distance != 0 && distance % 20 == 0)//거래소 입장 위해
+        if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
             StockMarket();
         }
