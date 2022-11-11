@@ -145,9 +145,9 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	textcolor(14);
 	printf("투자하고 싶은 상품의 번호를 입력하세요: ");//다음부터 작업할 부분
 	scanf("%d", Choice);
-
-
+	
 	getchar();
+	textcolor(15);
 }
 
 void Drawingmarket()
@@ -309,9 +309,9 @@ int Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//왼쪽부터 차례
 	//0~21 
 	else {
 		if (RandEvent2 % 2 == 0)
-			revenue -= gold * 0.2;
+			revenue -= coin * 0.2;
 		else
-			revenue += gold * 0.1;
+			revenue += coin * 0.1;
 	}
 
 
@@ -323,23 +323,23 @@ int Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//왼쪽부터 차례
 	{
 		if (RandEvent1 >= 0 && RandEvent1 <= 5)//바이오 관련 주라면
 		{
-			if (Choice == 1) revenue -= gold * 0.4;
+			if (Choice == 1) revenue -= coin * 0.4;
 		}
 		if (RandEvent1 >= 6 && RandEvent1 <= 11)//방산 관련 주라면
 		{
-			if (Choice == 2) revenue -= gold * 0.4;
+			if (Choice == 2) revenue -= coin * 0.4;
 		}
 		if (RandEvent1 >= 12 && RandEvent1 <= 17)//반도체 관련 주라면
 		{
-			if (Choice == 3) revenue -= gold * 0.4;
+			if (Choice == 3) revenue -= coin * 0.4;
 		}
 		if (RandEvent1 >= 18 && RandEvent1 <= 21)//반도체 관련 주라면
 		{
-			if (Choice == 4) revenue -= gold * 0.4;
+			if (Choice == 4) revenue -= coin * 0.4;
 		}
 		if (RandEvent1 >= 22 && RandEvent1 <= 27)//자동차 관련 주라면
 		{
-			if (Choice == 5) revenue -= gold * 0.4;
+			if (Choice == 5) revenue -= coin * 0.4;
 		}
 	}
 
@@ -347,29 +347,30 @@ int Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//왼쪽부터 차례
 	{
 		if (RandEvent1 >= 0 && RandEvent1 <= 5)//바이오 관련 주라면
 		{
-			if (Choice == 1) revenue += gold * 0.2;
+			if (Choice == 1) revenue += coin * 0.35;
 		}
 		if (RandEvent1 >= 6 && RandEvent1 <= 11)//방산 관련 주라면
 		{
-			if (Choice == 2) revenue += gold * 0.2;
+			if (Choice == 2) revenue += coin * 0.35;
 		}
 		if (RandEvent1 >= 12 && RandEvent1 <= 17)//반도체 관련 주라면
 		{
-			if (Choice == 3) revenue += gold * 0.2;
+			if (Choice == 3) revenue += coin * 0.35;
 		}
 		if (RandEvent1 >= 18 && RandEvent1 <= 21)//반도체 관련 주라면
 		{
-			if (Choice == 4) revenue += gold * 0.2;
+			if (Choice == 4) revenue += coin * 0.35;
 		}
 		if (RandEvent1 >= 22 && RandEvent1 <= 27)//자동차 관련 주라면
 		{
-			if (Choice == 5) revenue += gold * 0.2;
+			if (Choice == 5) revenue += coin * 0.35;
 		}
 	}
 
 
 	//우선 각 종목 관련 수익률 기준을 정해야 함
 	//EventList2에서 발생하는 사건들 중 주가에 크게 영향을 미치는 부분과 그렇지 않은 부분을 나눠야 함
+	//힌트 항목 추가가 필요함, 일확천금을 노릴 수 있도록 하는 요소 추가도 중요해보임
 
 	return revenue;
 }
@@ -387,8 +388,10 @@ void StockMarket()
 	revenue = Result(YORN, Choice, random1, random2);//수익률 반환
 	//그러면 전역변수로 선언한 Gold에 + - revenue를 해줌
 
-	gold += revenue;//골드에 수익률 반환해줌
-
+	coin += revenue;//골드에 수익률 반환해줌
+	gotoxy(10, 10);
+	printf("%d", coin);
+	getchar();
 
 	//이 밑으로는 모든 작업이 끝난 후에 실행
 	EraseMarket();//맨 마지막 달리기 화면으로 전환하기 전 거래소를 지워줌

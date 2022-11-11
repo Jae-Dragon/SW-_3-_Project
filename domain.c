@@ -23,10 +23,9 @@ int main()
 	Title();
 	setName();
 	setLevel();
-	//Event();//초기에 이벤트 리스트 삽입 위해 실행 필요
-	//Stock();//초기 투자종목 리스트 삽입 위해 실행 필요
+	Event();//초기에 이벤트 리스트 삽입 위해 실행 필요
+	Stock();//초기 투자종목 리스트 삽입 위해 실행 필요
 
-	//StockMarket();
 	movingAnt();
 	gameOver();
 

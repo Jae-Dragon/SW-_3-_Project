@@ -194,12 +194,12 @@ void movingAnt()
         system("cls");
         distance++;
        
-        /*
+      
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
             StockMarket();
         }
-        */
+    
         gettingOld();
 
         if (isEnd() == 1) {

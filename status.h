@@ -15,7 +15,6 @@
 #include "StockMarket.h"//거래소 관련 함수들만 모아두는 곳(재용 담당)
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약담당)
 
-int coin = 10000;
 int life = 100;
 clock_t start;
 
