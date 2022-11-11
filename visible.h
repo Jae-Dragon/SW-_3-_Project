@@ -128,9 +128,15 @@ void movingAnt()
     //int idx = 1;
 
     start = 0.0;
-   
+    
+    // 돈 만들기위함
+    gotoxy(cashX, cashY);
+    ShowCash(cashModel[cash_id]);
+    srand((unsigned int)time(NULL));
+
     while (1)
     {
+        makeCash();
 
         // 스페이스 키를 누르고, 바닥일 때만 점프가능
         if (GetKeyDown() == ' ' && isBottom)
@@ -193,11 +199,12 @@ void movingAnt()
         Sleep(10);
         system("cls");
         distance++;
+
        
       
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
-            StockMarket();
+            //StockMarket();
         }
     
         gettingOld();

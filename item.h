@@ -15,3 +15,102 @@
 #include "StockMarket.h"//거래소 관련 함수들만 모아두는 곳(재용 담당)
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약 담당)
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
+
+
+char cashModel[][3][7] =
+{
+	// 10원 2 : 테두리, 9 : 공백 7: 물음표
+	{
+		{2,2,2,2,2,2,2},
+		{2,9,1,9,0,9,2},
+		{2,2,2,2,2,2,2}
+	},
+	//100원
+	{
+		{2,2,2,2,2,2,2},
+		{2,9,1,0,0,9,2},
+		{2,2,2,2,2,2,2}
+	},
+	//500원
+	{
+		{2,2,2,2,2,2,2},
+		{2,9,5,0,0,9,2},
+		{2,2,2,2,2,2,2}
+	},
+	//??? 랜덤
+	{
+		{2,2,2,2,2,2,2},
+		{2,9,7,7,7,9,2},
+		{2,2,2,2,2,2,2}
+	}
+};
+
+
+void ShowCash(char cashInfo[3][7])
+{
+	int x, y;
+	COORD curPos = GetCurrentCursorPos();
+
+	for (y = 0; y < 3; y++)
+		for (x = 0; x < 7; x++)
+		{
+			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
+
+			if (cashInfo[y][x] == 2) printf("*");
+			else if (cashInfo[y][x] == 1) printf("1");
+			else if (cashInfo[y][x] == 0) printf("0");
+			else if (cashInfo[y][x] == 5) printf("5");
+			else if (cashInfo[y][x] == 7) printf("?");
+			else if (cashInfo[y][x] == 9) printf(" ");
+		}
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+}
+
+void DeleteCash(char cashInfo[3][7])
+{
+	int x, y;
+	COORD curPos = GetCurrentCursorPos();
+
+	for (y = 0; y < 3; y++)
+		for (x = 0; x < 7; x++)
+		{
+			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
+
+			if (cashInfo[y][x] == 1 || cashInfo[y][x] == 0 || cashInfo[y][x] == 5 || cashInfo[y][x] == 2 || cashInfo[y][x] == 7) printf("  ");
+		}
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+}
+
+void ShiftLeft(void)
+{
+	COORD curPos = GetCurrentCursorPos();
+	
+	DeleteCash(cashModel[cash_id]);
+	curPos.X -= 2;
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+	ShowCash(cashModel[cash_id]);
+}
+
+void makeCash(void)
+{
+	gotoxy(cashX, cashY);
+	if (cash_id == 3) textcolor(cashColor);
+	else textcolor(10);//10 : green
+	ShiftLeft(cashModel[cash_id]);
+	cashX -= 1;
+	if (cashX < 0)
+	{
+		cash_id = (rand() % 4);
+		gotoxy(cashX, cashY);
+		cashX = 60;
+		cashY = rand() % 19 + 13;
+	}
+
+	if (cash_id == 3)
+	{
+		cashColor += 1;
+		if (cashColor > 15) cashColor = 1;
+		textcolor(cashColor);
+	}
+	textcolor(15);//15 : white
+}
