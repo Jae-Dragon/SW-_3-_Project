@@ -100,6 +100,8 @@ void Background()
     gotoxy(0, 35);
     for (int i = 0; i < 13; i++)
         printf("───────────");
+    
+    statInfo();
 }
 
 // 키보드 입력된 값을 반환하는 함수
@@ -124,6 +126,9 @@ void movingAnt()
     int leg = 0;
     Background();
     //int idx = 1;
+
+    start = 0.0;
+   
     while (1)
     {
 
@@ -195,7 +200,12 @@ void movingAnt()
             StockMarket();
         }
         */
-        
+        gettingOld();
+
+        if (isEnd() == 1) {
+            break;
+        }
+
     }
 
     
