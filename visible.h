@@ -138,6 +138,7 @@ void Title()
 
     setName();
     setLevel();
+    system("cls");
     
 }
 void Background()
@@ -211,10 +212,22 @@ void movingAnt()
         }
 
         Background();
-        gotoxy(0, antY);
+        
+        
 
-        //textcolor(idx++);
-        //if (idx > 15) idx = 1;
+        gotoxy(0, pre_ant);
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+
+        gotoxy(0, antY);
+        pre_ant = antY;
         printf("      бсбс  \n");
         printf("      бс    \n");
         printf("    бсбсбсбс\n");
@@ -235,7 +248,8 @@ void movingAnt()
         }
         
         Sleep(10);
-        system("cls");
+        //system("cls");
+        
         distance++;
 
        
@@ -250,6 +264,10 @@ void movingAnt()
         if (isEnd() == 1) {
             break;
         }
+
+        
+        
+
 
     }
 
