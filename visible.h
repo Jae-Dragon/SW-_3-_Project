@@ -248,7 +248,7 @@ void movingAnt()
         }
         
         Sleep(10);
-        //system("cls");
+        //
         
         distance++;
 
@@ -256,6 +256,7 @@ void movingAnt()
       
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
+            system("cls");
             StockMarket();
         }
     
