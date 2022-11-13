@@ -17,6 +17,48 @@
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
 
+void setName()
+{
+    system("cls");
+    gotoxy(20, 10);
+    printf("이름을 입력해주세요 : ");
+    scanf("%s", name);
+    //printf(name);
+    //system("PAUSE");
+}
+
+
+void setLevel()
+{
+    //system("cls");
+    textcolor(10);
+    gotoxy(20, 15);
+    printf("┌──────── 난이도 ────────┐ ");
+    gotoxy(20, 16);
+    printf("│                        │");
+    gotoxy(20, 17);
+    printf("│   쉬움 ( Easy ) : 0    │");
+    gotoxy(20, 18);
+    printf("│                        │");
+    gotoxy(20, 19);
+    printf("│   보통 ( Normal ) : 1  │");
+    gotoxy(20, 20);
+    printf("│                        │");
+    gotoxy(20, 21);
+    printf("│   어려움 ( Hard ) : 2  │");
+    gotoxy(20, 22);
+    printf("│                        │");
+    gotoxy(20, 23);
+    printf("└────────────────────────┘");
+
+    textcolor(15);
+    gotoxy(20, 24);
+    printf(" 선택 : ");
+    scanf("%d", &level);
+    //printf("%d", level);
+    //system("PAUSE");
+}
+
 void Title()
 {
 	COORD curPos;
@@ -93,6 +135,10 @@ void Title()
         on_off += 1;
     }
 	getchar();
+
+    setName();
+    setLevel();
+    system("cls");
     
 }
 void Background()
@@ -170,10 +216,22 @@ void movingAnt()
         }
 
         Background();
-        gotoxy(0, antY);
+        
+        
 
-        //textcolor(idx++);
-        //if (idx > 15) idx = 1;
+        gotoxy(0, pre_ant);
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+        printf("            \n");
+
+        gotoxy(0, antY);
+        pre_ant = antY;
         printf("      ■■  \n");
         printf("      ■    \n");
         printf("    ■■■■\n");
@@ -192,23 +250,18 @@ void movingAnt()
             printf(" ＼/ ＼/\n");
             leg = 0;
         }
-        /*
-        gotoxy(40, 20);
-        printf("********\n");
-        gotoxy(40, 21);
-        printf("*  100 *\n");
-        gotoxy(40, 22);
-        printf("********\n");
-        */
+        
         Sleep(10);
-        system("cls");
+        //
+        
         distance++;
 
        
       
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
-            //StockMarket();
+            system("cls");
+            StockMarket();
         }
     
         gettingOld();
@@ -217,50 +270,14 @@ void movingAnt()
             break;
         }
 
+        
+        
+
+
     }
 
     
 
 }
 
-void setName()
-{
-    system("cls");
-    gotoxy(20, 10);
-    printf("이름을 입력해주세요 : ");
-    scanf("%s", name);
-    //printf(name);
-    //system("PAUSE");
-}
 
-
-void setLevel()
-{
-    //system("cls");
-    textcolor(10);
-    gotoxy(20, 15);
-    printf("┌──────── 난이도 ────────┐ ");
-    gotoxy(20, 16);
-    printf("│                        │");
-    gotoxy(20, 17);
-    printf("│   쉬움 ( Easy ) : 0    │");
-    gotoxy(20, 18);
-    printf("│                        │");
-    gotoxy(20, 19);
-    printf("│   보통 ( Normal ) : 1  │");
-    gotoxy(20, 20);
-    printf("│                        │");
-    gotoxy(20, 21);
-    printf("│   어려움 ( Hard ) : 2  │");
-    gotoxy(20, 22);
-    printf("│                        │");
-    gotoxy(20, 23);
-    printf("└────────────────────────┘");
-
-    textcolor(15);
-    gotoxy(20, 24);
-    printf(" 선택 : ");
-    scanf("%d", &level);
-    //printf("%d", level);
-    //system("PAUSE");
-}

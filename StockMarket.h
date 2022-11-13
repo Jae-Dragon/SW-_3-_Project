@@ -389,12 +389,10 @@ void StockMarket()
 	//그러면 전역변수로 선언한 Gold에 + - revenue를 해줌
 
 	coin += revenue;//골드에 수익률 반환해줌
-	gotoxy(10, 10);
-	printf("%d", coin);
-	getchar();
 
 	//이 밑으로는 모든 작업이 끝난 후에 실행
 	EraseMarket();//맨 마지막 달리기 화면으로 전환하기 전 거래소를 지워줌
 	EraseOpinion();
+	system("cls");
 }
 
