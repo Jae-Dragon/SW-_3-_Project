@@ -132,12 +132,16 @@ void movingAnt()
     // 돈 만들기위함
     gotoxy(cashX, cashY);
     ShowCash(cashModel[cash_id]);
+
+    gotoxy(bombX, bombY);
+    ShowCash(bombModel[bomb_id]);
     srand((unsigned int)time(NULL));
 
     while (1)
     {
         makeCash();
 
+        //makeBomb();
         // 스페이스 키를 누르고, 바닥일 때만 점프가능
         if (GetKeyDown() == ' ' && isBottom)
         {
