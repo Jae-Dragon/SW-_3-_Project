@@ -55,6 +55,24 @@ void setLevel()
     gotoxy(20, 24);
     printf(" 선택 : ");
     scanf("%d", &level);
+
+    if (level == 0) // 난이도 쉬움
+    {
+        coin = 30000;
+        //speed = 15;
+    }
+    else if (level == 1) // 난이도 보통
+    {
+        coin = 10000;
+        //speed = 10;
+    }
+    else if (level == 2) // 난이도 어려움
+    {
+        coin = 5000;
+        //speed = 5;
+    }
+        
+
     //printf("%d", level);
     //system("PAUSE");
 }
@@ -141,11 +159,13 @@ void Title()
     system("cls");
     
 }
+
+// 바닥
 void Background()
 {
     gotoxy(0, 35);
     for (int i = 0; i < 13; i++)
-        printf("───────────");
+        printf("────────────");
     
     statInfo();
 }
@@ -162,6 +182,8 @@ int GetKeyDown()
 
 void movingAnt()
 {
+    
+
     int isJumping = 0;
     int isBottom = 1;
     const int gravity = 3;
@@ -251,7 +273,7 @@ void movingAnt()
             leg = 0;
         }
         
-        Sleep(10);
+        Sleep(speed);
         //
         
         distance++;

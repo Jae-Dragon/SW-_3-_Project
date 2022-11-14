@@ -12,7 +12,8 @@ int level; // 선택된 난이도
 
 int cash_id = 0; // 0 ~ 3
 int cashX = 60, cashY = 20;// 초기 값
-int pre_ant = 26; // 전에 개미 위치
+int pre_ant = 26; //  개미의 바로 이전 위치 (y좌표)
+int speed = 10; 
 int bomb_id = 0;
 int bombX = 60, bombY = 30;// 초기 값
 int cashColor = 1; // 랜덤아이템

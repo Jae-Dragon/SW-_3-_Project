@@ -34,6 +34,7 @@ void statInfo()
 	};
 }
 
+/* 수정 전
 void gettingOld() 
 {
 	clock_t now = clock();
@@ -44,6 +45,34 @@ void gettingOld()
 		start = now;
 	}
 }
+*/
+
+void gettingOld()
+{
+	clock_t now = clock();
+	double result = (double)(now - start);
+
+	if (result > 990.0) {
+		// 난이도에 따른 차감속도 조정
+		if (level == 0)
+			life -= 1;
+		else if (level == 1)
+			life -= 2;
+		else if (level == 2)
+			life -= 3;
+
+		start = now;
+	}
+	/*
+	30초 후 남은 생명(거래소 없애고 쟀을 때)
+	/////////////////////////////////////////////////////////////////////// : 쉬움
+	//////////////////////////////////////////// : 보통
+	//////////////// : 어려움
+	
+	*/
+}
+
+
 
 /*
 void afterEvent(int lifePlus, int coinPlus)
