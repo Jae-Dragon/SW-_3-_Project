@@ -17,6 +17,20 @@
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
 
+// 개미 배열 (다리위치까지 포함됨.)
+char antModel[9][6] =
+{
+    {0,0,0,1,1,0},
+    {0,0,0,1,0,0},
+    {0,0,1,1,1,1},
+    {0,0,1,1,0,1},
+    {0,0,1,1,1,1},
+    {0,0,0,1,1,0},
+    {1,1,1,1,1,0},
+    {1,1,1,1,0,0},
+    {1,1,0,1,1,0}
+};
+
 void setName()
 {
     system("cls");
@@ -186,9 +200,9 @@ void movingAnt()
 
     int isJumping = 0;
     int isBottom = 1;
-    const int gravity = 3;
+    const int gravity = 3; // 늘리면 점프 속도 증가, 줄이면 감소
 
-    int antY = 26;
+    antY = 26;
 
 
     int leg = 0;
@@ -232,7 +246,7 @@ void movingAnt()
             isBottom = 1;
         }
 
-        if (antY <= 10) // 개미의 점프 높이
+        if (antY <= 10) // 개미의 최대점프 높이
         {
             isJumping = 0;
         }
@@ -240,28 +254,31 @@ void movingAnt()
         Background();
         
         
-
+        // 개미 흔적 지우기
         gotoxy(0, pre_ant);
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
-        printf("            \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
+        printf("              \n");
 
-        gotoxy(0, antY);
+        
         pre_ant = antY;
-        printf("      ■■  \n");
-        printf("      ■    \n");
-        printf("    ■■■■\n");
-        printf("    ■■  ■\n");
-        printf("    ■■■■\n");
-        printf("      ■■  \n");
-        printf("■■■■■  \n");
-        printf("■■■■  \n");
+       
+        int i, j;
+        for (i = 0; i < 8; i++) {
+            for (j = 0; j < 6; j++) {
+                gotoxy(j+1, antY+i);
+                if (antModel[i][j] == 1)
+                    printf("■");
+            }
+        }
+
+        gotoxy(1, antY + 8);
         if (leg == 0)
         {
             printf(" /＼ /＼\n");
