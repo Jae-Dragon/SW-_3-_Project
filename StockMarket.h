@@ -7,6 +7,19 @@
 #include <time.h>
 #include <string.h>
 
+//1. 판매옵션
+//2. 아이템 구매 
+//3. 가시성 증대
+//4. 실제 주식 투자처럼 리얼하게 
+//5. 달릴 때 보유주식을 볼 수 있도록 
+//6. 주식을 팔아야 골드로 환산
+
+//함정추가, 날라오는 장애물, 생명력 아이템 추가, 거래소(조금 작게?), 폭탄 크기 조정, 생성 방식, 가불기 패턴 안나오도록
+//충돌함수(배열에 담아서 구현), 좌표를 전역변수로 설정(2개) --> 충돌하면 지우기(반영하고), 
+//개미를 배열에 담기(달리기, 점프), 개미위치 오른쪽으로 한칸이동, 
+//스탯 관리: 이름, 생명력, 골드 먹었을 때 그 수치만큼 반영이 돼야 함, 보유 주식 보여야 하고, 
+//이스터에그
+//
 
 //분할 작업을 위해 각자 독립된 헤더파일을 사용
 #include "container.h"//기본적인 window.h 함수들을 넣어두는 곳(ex. getcurrentcursorpos...)
@@ -16,9 +29,18 @@
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약 담당)
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
-char EventList1[40][60];
-char EventList2[30][30];
-char StockList[30][30];
+char EventList1[40][60];//특정 종목 관련
+char EventList2[30][30];//전체 주가 관련
+char StockList[30][30];//종목 종류
+
+int PriceOfBio, PriceOfArmy, PriceOfSemicon, PriceOfShip, PriceOfCar;//각 종목의 주가
+int QuantityOfBio, QuantityOfArmy, QuantityOfSemicon, QuantityOfShip, QuantityOfCar;//각 종목의 보유량
+
+//구현해야 할 순서 
+//1. 주가가 거래소 띄울 때 표시돼야 함 --> 구현완료
+//2. 플레이어가 사고 파는 것을 결정할 수 있도록 해야함(입력 받아햐 할 것은 종목과 수량) 
+//3. 주가가 거래소에서 변동되도록 해야 함, Result함수에서 수치 조정
+//4. 주식 수량 보유 현황을 알 수 있도록 해야 함
 
 void Stock()
 {
@@ -29,6 +51,12 @@ void Stock()
 	strcpy(StockList[3], "조선");
 	strcpy(StockList[4], "자동차");
 
+	//각 종목의 수 초기화
+	QuantityOfBio = 0;
+	QuantityOfArmy = 0;
+	QuantityOfSemicon = 0; 
+	QuantityOfShip = 0;
+	QuantityOfCar = 0;
 }
 
 void Event()
@@ -38,10 +66,14 @@ void Event()
 	// 특정 종목에 영향을 미치는 이벤트와 전체적인 종목에 영향을 미치는 이벤트를 구분 
 	//StockList 0:제약, 1:방산, 2:반도체, 3:조선, 4:제철
 
-	//EventList1 --> 특정 종목 관련
-	//EventList2 --> 전체 주가 관련
+	//초기 주식 가격
+	PriceOfBio = 500;
+	PriceOfArmy = 500;
+	PriceOfSemicon = 500;
+	PriceOfShip = 500;
+	PriceOfCar = 500;
 
-
+	//각 종목별 이벤트
 	strcpy(EventList1[0], "백신 부작용 발생");//바이오회사 주가 하락
 	strcpy(EventList1[1], "전염병 발생");//바이오회사 주가 상승
 	strcpy(EventList1[2], "미국의 자국기업 보호를 위한 국내기업 진단키트 수출규제");//바이오회사 주가 하락
@@ -75,7 +107,7 @@ void Event()
 	strcpy(EventList1[26], "환경오염을 막기 위한 정부의 대중교통 가격 완화");//자동차 관련 주가 하락
 	strcpy(EventList1[27], "역사에 기록될 폭우로 인한 다수 차 침수");//자동차 관련 주가 상승
 
-	//==================================================================================================================
+	//전체 주가 관련 이벤트
 	strcpy(EventList2[0], "전체적인 원자재 가격의 상승");//주가 하락
 	strcpy(EventList2[1], "전체적인 원자재 가격의 인하");//주가 상승
 	strcpy(EventList2[2], "원화의 환율이 상승하였다");//주가 하락 -->대한민국 원화의 가치가 휴지 조각이 되기 때문
@@ -91,7 +123,7 @@ void Event()
 
 
 
-	//추가되면  Random에 들어가는 변수도 조절을 해줘야함
+	//추가되면 Random에 들어가는 변수도 조절을 해줘야함
 }
 
 int Random(int min, int max)
@@ -121,13 +153,16 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	printf("투자상품 목록");
 	textcolor(15);
 	gotoxy(32, 18);
-	Sleep(1000);
-	printf("1.%s, 2.%s, 3.%s, 4.%s, 5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
+	Sleep(100);
+	printf("종목: 1.%s || 2.%s || 3.%s || 4.%s || 5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
 	
 	gotoxy(32, 19);
-	printf("------------------------------------------------------------------");
+	printf("====================================================================");
 
-	gotoxy(32, 21);
+	gotoxy(32, 20);
+	printf("주가: 1.%d    || 2.%d  || 3.%d    || 4.%d  || 5.%d", PriceOfBio, PriceOfArmy, PriceOfSemicon, PriceOfShip, PriceOfCar);
+
+	gotoxy(32, 22);
 	Sleep(100);
 	textcolor(14);
 	printf("상품에 투자하고 싶으시면 Y를, 아니라면 N을 입력해주세요: ");
