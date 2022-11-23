@@ -1,7 +1,7 @@
 #pragma once
 
 #define Market_WIDTH 35
-#define Market_HEIGHT 20
+#define Market_HEIGHT 26
 #define Market_ORIGIN_X 60
 #define Market_ORIGIN_Y 14
 

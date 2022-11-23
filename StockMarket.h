@@ -7,20 +7,6 @@
 #include <time.h>
 #include <string.h>
 
-//1. 판매옵션
-//2. 아이템 구매 
-//3. 가시성 증대
-//4. 실제 주식 투자처럼 리얼하게 
-//5. 달릴 때 보유주식을 볼 수 있도록 
-//6. 주식을 팔아야 골드로 환산
-
-//함정추가, 날라오는 장애물, 생명력 아이템 추가, 거래소(조금 작게?), 폭탄 크기 조정, 생성 방식, 가불기 패턴 안나오도록
-//충돌함수(배열에 담아서 구현), 좌표를 전역변수로 설정(2개) --> 충돌하면 지우기(반영하고), 
-//개미를 배열에 담기(달리기, 점프), 개미위치 오른쪽으로 한칸이동, 
-//스탯 관리: 이름, 생명력, 골드 먹었을 때 그 수치만큼 반영이 돼야 함, 보유 주식 보여야 하고, 
-//이스터에그
-//
-
 //분할 작업을 위해 각자 독립된 헤더파일을 사용
 #include "container.h"//기본적인 window.h 함수들을 넣어두는 곳(ex. getcurrentcursorpos...)
 #include "define.h"//전역 변수 및 정의들을 모아두는 곳
@@ -31,14 +17,14 @@
 
 char EventList1[40][60];//특정 종목 관련
 char EventList2[30][30];//전체 주가 관련
-char StockList[30][30];//종목 종류
+char StockList[5][30];//종목 종류
+int PriceList[5];//각 종목의 주가
+int QuantityList[5];//각 종목의 보유량
 
-int PriceOfBio, PriceOfArmy, PriceOfSemicon, PriceOfShip, PriceOfCar;//각 종목의 주가
-int QuantityOfBio, QuantityOfArmy, QuantityOfSemicon, QuantityOfShip, QuantityOfCar;//각 종목의 보유량
 
 //구현해야 할 순서 
 //1. 주가가 거래소 띄울 때 표시돼야 함 --> 구현완료
-//2. 플레이어가 사고 파는 것을 결정할 수 있도록 해야함(입력 받아햐 할 것은 종목과 수량) 
+//2. 플레이어가 사고 파는 것을 결정할 수 있도록 해야함(입력 받아햐 할 것은 종목과 수량) -->
 //3. 주가가 거래소에서 변동되도록 해야 함, Result함수에서 수치 조정
 //4. 주식 수량 보유 현황을 알 수 있도록 해야 함
 
@@ -52,11 +38,11 @@ void Stock()
 	strcpy(StockList[4], "자동차");
 
 	//각 종목의 수 초기화
-	QuantityOfBio = 0;
-	QuantityOfArmy = 0;
-	QuantityOfSemicon = 0; 
-	QuantityOfShip = 0;
-	QuantityOfCar = 0;
+	QuantityList[0] = 0;
+	QuantityList[1] = 0;
+	QuantityList[2] = 0;
+	QuantityList[3] = 0;
+	QuantityList[4] = 0;
 }
 
 void Event()
@@ -67,11 +53,11 @@ void Event()
 	//StockList 0:제약, 1:방산, 2:반도체, 3:조선, 4:제철
 
 	//초기 주식 가격
-	PriceOfBio = 500;
-	PriceOfArmy = 500;
-	PriceOfSemicon = 500;
-	PriceOfShip = 500;
-	PriceOfCar = 500;
+	PriceList[0] = 500;
+	PriceList[1] = 500;
+	PriceList[2] = 500;
+	PriceList[3] = 500;
+	PriceList[4] = 500;
 
 	//각 종목별 이벤트
 	strcpy(EventList1[0], "백신 부작용 발생");//바이오회사 주가 하락
@@ -135,6 +121,94 @@ int Random(int min, int max)
 	return random;
 }
 
+void EraseDeal()
+{
+	gotoxy(32, 23);
+	printf("                                                     ");
+
+	gotoxy(32, 25);
+	printf("                                                     ");
+
+
+	gotoxy(32, 27);
+	printf("                                                     ");
+	gotoxy(32, 29);
+	printf("                                                     "); 
+
+
+	gotoxy(32, 34);
+	printf("                                                                 ");
+	gotoxy(32, 35);
+	printf("                   ");
+}
+
+void Deal()
+{
+	int c, b, s, q;
+	while (1)
+	{
+		//옵션을 선택할 수 있도록 해야하는데 가령 
+		textcolor(15);
+		gotoxy(32, 23);
+		printf("원하는 옵션의 번호를 입력하세요(매수: 1번, 매도: 2번, 종료: 3번)");//다음부터 작업할 부분
+
+		gotoxy(32, 25);
+		printf("옵션 선택: "); scanf("%d", &c);
+
+		if (c == 3) break;//반복문 탈출
+
+		else if (c == 1)//매수
+		{
+			gotoxy(32, 27);
+			printf("거래를 희망하는 종목의 번호를 입력해주세요: "); scanf("%d", &b);
+			gotoxy(32, 29);
+			printf("원하시는 종목의 매수량을 입력해주세요: "); scanf("%d", &q);
+
+			if (coin < PriceList[b] * q) {
+				textcolor(13);
+				gotoxy(32, 32);
+				printf("보유 코인이 부족합니다!!!");
+				textcolor(15);
+			}
+			else {
+				coin -= PriceList[b] * q;//코인 차감
+				QuantityList[b] += q;//매입한 주식의 수 업데이트
+			}
+
+		}
+
+		else if (c == 2)//매수
+		{
+			gotoxy(32, 27);
+			printf("거래를 희망하는 종목의 번호를 입력해주세요: "); scanf("%d", &s);
+			gotoxy(32, 29);
+			printf("원하시는 종목의 매도량을 입력해주세요: "); scanf("%d", &q);
+
+			if (QuantityList[s] < q)
+			{
+				textcolor(13);
+				gotoxy(32, 32);
+				printf("보유 주식량이 부족합니다!!!");
+				textcolor(15);
+			}
+			else {
+				coin += PriceList[s] * q;//
+				QuantityList[s] -= q;//매도한 주식의 수 업데이트
+			}
+		}
+		int M;
+		gotoxy(32, 34);
+		printf("종료를 원하시면 0번, 거래를 계속하시기를 원하시면 1번을 누르십시오");
+		gotoxy(32, 36);
+		printf("번호입력: "); scanf("%d", &M);
+
+		if (M == 0) break;
+
+		EraseDeal();//
+		Sleep(1000);
+	}
+}
+
 void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 {
 	
@@ -160,29 +234,11 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	printf("====================================================================");
 
 	gotoxy(32, 20);
-	printf("주가: 1.%d    || 2.%d  || 3.%d    || 4.%d  || 5.%d", PriceOfBio, PriceOfArmy, PriceOfSemicon, PriceOfShip, PriceOfCar);
+	printf("주가: 1.%d    || 2.%d  || 3.%d    || 4.%d  || 5.%d", PriceList[0], PriceList[1], PriceList[2], PriceList[3], PriceList[4]);
 
-	gotoxy(32, 22);
-	Sleep(100);
-	textcolor(14);
-	printf("상품에 투자하고 싶으시면 Y를, 아니라면 N을 입력해주세요: ");
-	scanf("%c", YorN);
-	getchar();
-	Sleep(50);
-	if (*YorN == 'N') return;
-
-	textcolor(12);
-	gotoxy(32, 23);
-	printf("(Hint: 보통 종목별 호재가 주식시장에서 파워가 강합니다.");//다음부터 작업할 부분
-	gotoxy(32, 24);
-	printf(" 몇가지 사례를 제외한다면 말이죠.)");
-	gotoxy(32, 26);
-	textcolor(14);
-	printf("투자하고 싶은 상품의 번호를 입력하세요: ");//다음부터 작업할 부분
-	scanf("%d", Choice);
+	Deal();//매수매도 기능 추가
 	
-	getchar();
-	textcolor(15);
+
 }
 
 void Drawingmarket()
