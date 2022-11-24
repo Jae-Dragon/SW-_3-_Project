@@ -299,9 +299,9 @@ void movingAnt()
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
             system("cls");
-            //StockMarket();
+            StockMarket();
         }
-        system("cls"); // 주식 거래소와 별개로 필요
+        //system("cls"); // 주식 거래소와 별개로 필요
         gettingOld();
 
         if (isEnd() == 1) {
