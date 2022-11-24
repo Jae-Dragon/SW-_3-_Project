@@ -15,26 +15,32 @@
 #include "StockMarket.h"//거래소 관련 함수들만 모아두는 곳(재용 담당)
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약담당)
 
-int life = 100;
-clock_t start;
-
 void statInfo() 
 {
 	int i;
 
-	SetCurrentCursorPos(5, 2);
+	SetCurrentCursorPos(5, 4);
 
 	printf("COIN : %d", coin);
 
-	SetCurrentCursorPos(25, 2);
+	SetCurrentCursorPos(25, 4);
 
 	printf("♥ : ");
 	for (i = 0; i < life; i++) {
 		printf("/");
-	};
+	}
+
+	SetCurrentCursorPos(5, 2);
+	printf("NAME : ");
+	for (i = 0; i < 10; i++) {
+		printf("%c", name[i]);
+	}
+	SetCurrentCursorPos(25, 2);
+	printf("LEVEL : %d", level);
 }
 
-/* 수정 전
+//수정 전
+/*
 void gettingOld() 
 {
 	clock_t now = clock();
@@ -44,8 +50,8 @@ void gettingOld()
 		life--;
 		start = now;
 	}
-}
-*/
+}*/
+
 
 void gettingOld()
 {
@@ -54,27 +60,33 @@ void gettingOld()
 
 	if (result > 990.0) {
 		// 난이도에 따른 차감속도 조정
-		if (level == 0)
+		switch (level) {
+		case 0 :
 			life -= 1;
-		else if (level == 1)
+			break;
+		case 1 :
 			life -= 2;
-		else if (level == 2)
+			break;
+		case 2 :
 			life -= 3;
-
+			break;
+		default :
+			life -= 1;
+			break;
+		}
 		start = now;
 	}
-	/*
+}
+
+/*
 	30초 후 남은 생명(거래소 없애고 쟀을 때)
 	/////////////////////////////////////////////////////////////////////// : 쉬움
 	//////////////////////////////////////////// : 보통
 	//////////////// : 어려움
-	
+
 	*/
-}
 
 
-
-/*
 void afterEvent(int lifePlus, int coinPlus)
 {
 	if (DetectCollision()) { // 이벤트가 발생했다면 
@@ -84,8 +96,8 @@ void afterEvent(int lifePlus, int coinPlus)
 			life = 100;
 		}
 	}
-}//충돌감지 함수(충돌 발생 : return 1)를 호출하여 충돌 여부 확인 후 전역변수 스탯에 반영
-*/
+}
+
 
 int isEnd() {
 	if (life < 0) {
@@ -101,7 +113,38 @@ void gameOver()
 {
 	while (!(_kbhit())) {
 		SetCurrentCursorPos(50, 25);
-		printf("GAME OVER");
-		Sleep(500);
+		
+		textcolor(14);
+		gotoxy(5, 5);
+		//printf("내일은 주식왕!!!\n");
+		printf("    $           ■■■■■■■■          $     ■            ■      $     ■■■■■■■      \n");
+		gotoxy(5, 6);
+		printf("                       ■                       ■             ■           ■         \n");
+		gotoxy(5, 7);
+		printf("                $      ■           $$          ■             ■            ■       $     \n");
+		gotoxy(5, 8);
+		printf("                       ■      $                ■ ■ ■■■■■             ■■■■■■■             \n");
+		gotoxy(5, 9);
+		printf("       $               ■        $$             ■        $$   ■            ■         \n");
+		gotoxy(5, 10);
+		printf("                       ■                $      ■             ■      $     ■            \n");
+		gotoxy(5, 11);
+		printf("                  $    ■                       ■             ■   $        ■■■■■■■\n");
+		gotoxy(5, 12);
+		printf("\n");
+		gotoxy(5, 13);
+		printf("       $               ■■■■■■■              ■         $    ■                ■■■■■■■ \n");
+		gotoxy(5, 14);
+		printf("                       ■               $          ■ ■           ■                ■            ■■\n");
+		gotoxy(5, 15);
+		printf("                        ■         $               ■   ■         ■     $$         ■               ■ \n");
+		gotoxy(5, 16);
+		printf("                        ■■■■■■■             ■      ■      ■                ■       $$       ■\n");
+		gotoxy(5, 17);
+		printf("                        ■               $         ■         ■   ■                ■                ■\n");
+		gotoxy(5, 18);
+		printf("                        ■                         ■   $$      ■ ■      $$        ■            ■■ \n");
+		gotoxy(5, 19);
+		printf("                        ■■■■■■■             ■              ■                ■■■■■■■\n");
 	}
 }

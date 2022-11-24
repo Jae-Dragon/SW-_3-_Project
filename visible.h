@@ -208,8 +208,6 @@ void movingAnt()
     int leg = 0;
     Background();
     //int idx = 1;
-
-    start = 0.0;
     
     // 돈 만들기위함
     gotoxy(cashX, cashY);
@@ -218,6 +216,8 @@ void movingAnt()
     gotoxy(bombX, bombY);
     ShowCash(bombModel[bomb_id]);
     srand((unsigned int)time(NULL));
+
+    start = 0.0;
 
     while (1)
     {
@@ -291,18 +291,17 @@ void movingAnt()
         }
         
         Sleep(speed);
-        //
         
-        distance++;
+        //distance++;
 
        
       
-        if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
+        /*if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
             system("cls");
             StockMarket();
-        }
-    
+        }*/
+        system("cls"); // 주식 거래소와 별개로 필요
         gettingOld();
 
         if (isEnd() == 1) {
