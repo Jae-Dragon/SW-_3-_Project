@@ -292,15 +292,15 @@ void movingAnt()
         
         Sleep(speed);
         
-        //distance++;
-
+        distance++;
+        DetectCashCollision(antY, cashModel[cash_id], cash_id);
        
       
-        /*if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
+        if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
         {
             system("cls");
-            StockMarket();
-        }*/
+            //StockMarket();
+        }
         system("cls"); // 주식 거래소와 별개로 필요
         gettingOld();
 

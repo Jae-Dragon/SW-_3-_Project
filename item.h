@@ -56,6 +56,67 @@ char bombModel[][5][5] =
 	}
 };
 
+//임의로 추가
+
+char antModel1[9][6] =
+{
+   {0,0,0,1,1,0},
+   {0,0,0,1,0,0},
+   {0,0,1,1,1,1},
+   {0,0,1,1,0,1},
+   {0,0,1,1,1,1},
+   {0,0,0,1,1,0},
+   {1,1,1,1,1,0},
+   {1,1,1,1,0,0},
+   {1,1,0,1,1,0}
+};
+
+
+void DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 1, 아니면 0
+{
+	int x, y, a, b;
+	int arrX = 2;
+	int arrY = posY;
+
+	for (x = 0; x < 6; x++)
+	{
+		for (y = 0; y < 9; y++)
+		{
+			if (antModel1[y][x] == 1)
+			{
+				for (a = 0; a < 7; a++)
+				{
+					for (b = 0; b < 3; b++)
+					{
+						if (cashModel[b][a] == 2)
+						{
+							if ((arrX + x * 2 == cashX * 2 + a * 2) && (arrY + y == cashY + b))
+							{
+								// 수정필요
+								if (cash_id == 0) {
+									coin += 10;
+								}
+								else if (cash_id == 1) {
+									coin += 100;
+								}
+								else if (cash_id == 2) {
+									coin += 500;
+								}
+
+
+
+								//return 1;
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+	//return 0;
+}
+
 
 void ShowCash(char cashInfo[3][7])
 {

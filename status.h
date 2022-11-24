@@ -86,7 +86,7 @@ void gettingOld()
 
 	*/
 
-
+/*
 void afterEvent(int lifePlus, int coinPlus)
 {
 	if (DetectCollision()) { // 이벤트가 발생했다면 
@@ -97,6 +97,7 @@ void afterEvent(int lifePlus, int coinPlus)
 		}
 	}
 }
+*/
 
 
 int isEnd() {
