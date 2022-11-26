@@ -71,8 +71,24 @@ char antModel1[9][6] =
    {1,1,0,1,1,0}
 };
 
+void DeleteCash(char cashInfo[3][7])
+{
+	int x, y;
+	COORD curPos = GetCurrentCursorPos();
 
-void DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 1, 아니면 0
+	for (y = 0; y < 3; y++)
+		for (x = 0; x < 7; x++)
+		{
+			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
+
+			if (cashInfo[y][x] == 1 || cashInfo[y][x] == 0 || cashInfo[y][x] == 5 || cashInfo[y][x] == 2 || cashInfo[y][x] == 7) printf("  ");
+		}
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+}
+
+
+
+int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 1, 아니면 0
 {
 	int x, y, a, b;
 	int arrX = 2;
@@ -102,8 +118,10 @@ void DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시
 								else if (cash_id == 2) {
 									coin += 500;
 								}
-
-
+								//돈 지우기
+								gotoxy(cashX, cashY);
+								DeleteCash(cashModel[cash_id]);
+								cashX = -1; // 현재 왼쪽 벽에 닿을 때까지 왼쪽으로 돈 이동하게 해놓아서 임의적으로 좌표 바꾸기
 
 								//return 1;
 							}
@@ -138,20 +156,6 @@ void ShowCash(char cashInfo[3][7])
 	SetCurrentCursorPos(curPos.X, curPos.Y);
 }
 
-void DeleteCash(char cashInfo[3][7])
-{
-	int x, y;
-	COORD curPos = GetCurrentCursorPos();
-
-	for (y = 0; y < 3; y++)
-		for (x = 0; x < 7; x++)
-		{
-			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
-
-			if (cashInfo[y][x] == 1 || cashInfo[y][x] == 0 || cashInfo[y][x] == 5 || cashInfo[y][x] == 2 || cashInfo[y][x] == 7) printf("  ");
-		}
-	SetCurrentCursorPos(curPos.X, curPos.Y);
-}
 
 void ShiftLeft(void)
 {
