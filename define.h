@@ -20,3 +20,5 @@ int speed = 10;
 int bomb_id = 0;
 int bombX = 60, bombY = 30;// 초기 값
 int cashColor = 1; // 랜덤아이템
+int hurdleX = 60, hurdleY = 31;
+int hurdle_id = 2;

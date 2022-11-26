@@ -210,19 +210,23 @@ void movingAnt()
     //int idx = 1;
     
     // 돈 만들기위함
-    gotoxy(cashX, cashY);
-    ShowCash(cashModel[cash_id]);
+    //gotoxy(cashX, cashY);
+    //ShowCash(cashModel[cash_id]);
 
-    gotoxy(bombX, bombY);
-    ShowCash(bombModel[bomb_id]);
+    //gotoxy(bombX, bombY);
+    //ShowBomb(bombModel[bomb_id]);
     srand((unsigned int)time(NULL));
 
-    start = 0.0;
+    //gotoxy(hurdleX, hurdleY);
+    //ShowHurdle(cashModel[cash_id]);
 
+    start = 0.0;
+    int delay = 0;
     while (1)
     {
         makeCash();
-
+        if (cashX < 30) delay = 1;
+        if (delay == 1) makeHurdle();
         //makeBomb();
         // 스페이스 키를 누르고, 바닥일 때만 점프가능
         if (GetKeyDown() == ' ' && isBottom)

@@ -19,7 +19,7 @@
 
 char cashModel[][3][7] =
 {
-	// 10원 2 : 테두리, 9 : 공백 7: 물음표
+	// 10원 2 : 테두리, 9 : 공백 7: 물음표 8 : heart
 	{
 		{2,2,2,2,2,2,2},
 		{2,9,1,9,0,9,2},
@@ -42,6 +42,12 @@ char cashModel[][3][7] =
 		{2,2,2,2,2,2,2},
 		{2,9,7,7,7,9,2},
 		{2,2,2,2,2,2,2}
+	},
+	//heart
+	{
+		{2,2,2,2,2,2,2},
+		{2,9,8,8,8,9,2},
+		{2,2,2,2,2,2,2}
 	}
 };
 
@@ -55,6 +61,29 @@ char bombModel[][5][5] =
 		{0,1,1,1,0}
 	}
 };
+
+char hurdleModel[][4][2] =
+{
+	{
+		{0,0},
+		{0,0},
+		{1,1},
+		{1,1}
+	},
+	{
+		{0,0},
+		{1,1},
+		{1,1},
+		{1,1}
+	},
+	{
+		{1,1},
+		{1,1},
+		{1,1},
+		{1,1}
+	}
+};
+
 
 //임의로 추가
 
@@ -81,7 +110,8 @@ void DeleteCash(char cashInfo[3][7])
 		{
 			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
 
-			if (cashInfo[y][x] == 1 || cashInfo[y][x] == 0 || cashInfo[y][x] == 5 || cashInfo[y][x] == 2 || cashInfo[y][x] == 7) printf("  ");
+			//if (cashInfo[y][x] == 1 || cashInfo[y][x] == 0 || cashInfo[y][x] == 5 || cashInfo[y][x] == 2 || cashInfo[y][x] == 7) printf("  ");
+			printf("  ");
 		}
 	SetCurrentCursorPos(curPos.X, curPos.Y);
 }
@@ -151,6 +181,7 @@ void ShowCash(char cashInfo[3][7])
 			else if (cashInfo[y][x] == 0) printf("0");
 			else if (cashInfo[y][x] == 5) printf("5");
 			else if (cashInfo[y][x] == 7) printf("?");
+			else if (cashInfo[y][x] == 8) printf("♥");
 			else if (cashInfo[y][x] == 9) printf("  ");
 		}
 	SetCurrentCursorPos(curPos.X, curPos.Y);
@@ -171,6 +202,7 @@ void makeCash(void)
 {
 	gotoxy(cashX, cashY);
 	if (cash_id == 3) textcolor(cashColor);
+	else if (cash_id == 4) textcolor(4); // red
 	else textcolor(10);//10 : green
 	ShiftLeft(cashModel[cash_id]);
 	cashX -= 1;
@@ -178,7 +210,7 @@ void makeCash(void)
 	//왼쪽 벽에 닿았을 때
 	if (cashX < 0)
 	{
-		cash_id = (rand() % 4);
+		cash_id = (rand() % 5);
 		gotoxy(cashX, cashY);
 		cashX = 60;
 		cashY = rand() % 19 + 13;
@@ -191,6 +223,7 @@ void makeCash(void)
 		if (cashColor > 15) cashColor = 1;
 		textcolor(cashColor);
 	}
+
 	textcolor(15);//15 : white
 }
 
@@ -257,4 +290,69 @@ void makeBomb(void)
 
 
 	textcolor(15);//15 : white
+}
+
+void ShowHurdle(char hurdleInfo[4][2])
+{
+	int x, y;
+	COORD curPos = GetCurrentCursorPos();
+
+	for (y = 0; y < 4; y++)
+		for (x = 0; x < 2; x++)
+		{
+			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
+
+			if (hurdleInfo[y][x] == 1) printf("■");
+
+		}
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+}
+
+
+void DeleteHurdle(char hurdleInfo[4][2])
+{
+	int x, y;
+	COORD curPos = GetCurrentCursorPos();
+
+	for (y = 0; y < 4; y++)
+		for (x = 0; x < 2; x++)
+		{
+			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
+
+			if (hurdleInfo[y][x] == 1) printf("  ");
+
+		}
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+}
+
+void ShiftLeftHurdle(void)
+{
+	COORD curPos = GetCurrentCursorPos();
+
+	DeleteHurdle(hurdleModel[hurdle_id]);
+	curPos.X -= 2;
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+	ShowHurdle(hurdleModel[hurdle_id]);
+}
+
+void makeHurdle(void)
+{
+	gotoxy(hurdleX, hurdleY);
+
+	//textcolor(12);//10 : red
+
+	ShiftLeftHurdle(hurdleModel[hurdle_id]);
+	hurdleX -= 1;
+
+	//왼쪽 벽에 닿았을 때
+	if (hurdleX < 0)
+	{
+		hurdle_id = (rand() % 3);
+		gotoxy(hurdleX, hurdleY);
+		hurdleX = 60;
+		DeleteHurdle(hurdleModel[hurdle_id]);
+	}
+
+
+	//textcolor(15);//15 : white
 }
