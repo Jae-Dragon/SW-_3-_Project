@@ -144,18 +144,72 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 								cashX = -1; // 현재 왼쪽 벽에 닿을 때까지 왼쪽으로 돈 이동하게 해놓아서 임의적으로 좌표 바꾸기
 
 								// 수정필요
+								//10원
 								if (cash_id == 0) {
 									coin += 10;
 									return ;
 								}
+								//100원
 								else if (cash_id == 1) {
 									coin += 100;
 									return;
 								}
+								//500원
 								else if (cash_id == 2) {
 									coin += 500;
 									return;
 								}
+								//랜덤
+								else if (cash_id == 3)
+								{
+									int key = rand() % 10 + 1;
+									switch (key)
+									{
+										case 1 :
+											coin += 10;
+											break;
+
+										case 2:
+											coin += 10;
+											break;
+
+										case 3:
+											coin += 10;
+											break;
+
+										case 4:
+											coin += 100;
+											break;
+
+										case 5:
+											coin += 100;
+											break;
+
+										case 6:
+											coin += 100;
+											break;
+
+										case 7:
+											coin += 500;
+											break;
+
+										case 8:
+											coin += 500;
+											break;
+
+										case 9:
+											coin += 1000;
+											break;
+
+										case 10:
+											coin += 2000;
+											break;
+
+										default:
+											break;
+									}
+								}
+								// 하트
 								else if (cash_id == 4)
 								{
 									life += 5;
