@@ -138,20 +138,30 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 						{
 							if ((arrX + x * 2 == cashX * 2 + a * 2) && (arrY + y == cashY + b))
 							{
-								// 수정필요
-								if (cash_id == 0) {
-									coin += 10;
-								}
-								else if (cash_id == 1) {
-									coin += 100;
-								}
-								else if (cash_id == 2) {
-									coin += 500;
-								}
 								//돈 지우기
 								gotoxy(cashX, cashY);
 								DeleteCash(cashModel[cash_id]);
 								cashX = -1; // 현재 왼쪽 벽에 닿을 때까지 왼쪽으로 돈 이동하게 해놓아서 임의적으로 좌표 바꾸기
+
+								// 수정필요
+								if (cash_id == 0) {
+									coin += 10;
+									return ;
+								}
+								else if (cash_id == 1) {
+									coin += 100;
+									return;
+								}
+								else if (cash_id == 2) {
+									coin += 500;
+									return;
+								}
+								else if (cash_id == 4)
+								{
+									life += 5;
+									return;
+								}
+								
 
 								//return 1;
 							}
