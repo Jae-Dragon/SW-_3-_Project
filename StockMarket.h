@@ -93,6 +93,7 @@ void Event()
 	strcpy(EventList1[26], "È¯°æ¿À¿°À» ¸·±â À§ÇÑ Á¤ºÎÀÇ ´ëÁß±³Åë °¡°Ý ¿ÏÈ­");//ÀÚµ¿Â÷ °ü·Ã ÁÖ°¡ ÇÏ¶ô
 	strcpy(EventList1[27], "¿ª»ç¿¡ ±â·ÏµÉ Æø¿ì·Î ÀÎÇÑ ´Ù¼ö Â÷ Ä§¼ö");//ÀÚµ¿Â÷ °ü·Ã ÁÖ°¡ »ó½Â
 
+
 	//ÀüÃ¼ ÁÖ°¡ °ü·Ã ÀÌº¥Æ®
 	strcpy(EventList2[0], "ÀüÃ¼ÀûÀÎ ¿øÀÚÀç °¡°ÝÀÇ »ó½Â");//ÁÖ°¡ ÇÏ¶ô
 	strcpy(EventList2[1], "ÀüÃ¼ÀûÀÎ ¿øÀÚÀç °¡°ÝÀÇ ÀÎÇÏ");//ÁÖ°¡ »ó½Â
@@ -398,11 +399,19 @@ void Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//¿ÞÂÊºÎÅÍ Â÷·
 	//EventList2¿¡¼­ °¢ Á¾¸ñ¿¡¼­ Â¦¼ö¹øÂ°´Â ¾ÇÀç, È¦¼ö¹øÂ°´Â È£ÀçÀÓ
 	//0~21 
 
+	int L2;//¼öÀÍ·ü ¼öÄ¡ Á¶Á¤
+	
+	float T1 = 0 , T2 = 0;
+
 	if (RandEvent2 % 2 == 0)
 	{
 		for (int i = 0; i <= 4; i++)
 		{
-			PriceList[i] *= 0.94;//¾ÇÀç¸é -6%
+			L2 = Random(1, 6);
+			Sleep(100);
+			T1 = 1.0f - ((float)L2 / 100);//°æ±â°¡ ¾ÈÁÁÀ» ¶§
+
+			PriceList[i] *= T1;//¾ÇÀç
 		}
 	}
 		
@@ -410,37 +419,44 @@ void Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//¿ÞÂÊºÎÅÍ Â÷·
 	{
 		for (int i = 0; i <= 4; i++)
 		{
-			PriceList[i] *= 1.03;//È£Àç¸é ÀüÃ¼ 3%Áõ°¡
+			L2 = Random(1, 6);
+			T2 = 1.0f + ((float)L2 / 100);//°æ±â°¡ ÁÁÀ» ¶§
+
+			PriceList[i] *= T2;//È£Àç
 		}
 	}
 
-
-
-
 	//EventList1¿¡¼­ °¢ Á¾¸ñ¿¡¼­ Â¦¼ö¹øÂ°´Â ¾ÇÀç, È¦¼ö¹øÂ°´Â È£ÀçÀÓ
 	//0~5´Â ¹ÙÀÌ¿À °ü·Ã, // 6~11Àº ¹æ»ê °ü·Ã // 12~17Àº ¹ÝµµÃ¼ °ü·Ã // 18~21Àº Á¶¼± °ü·Ã
+
+	int L1;
+	T1 = 0; T2 = 0;
+
+	L1 = Random(3, 10);
+	T1 = 1.0f - ((float)L1 / 100);//Á¾¸ñ ¾ÈÁÁÀ» ¶§
+	T2 = 1.0f + ((float)L1 / 100);//Á¾¸ñ ÁÁÀ» ¶§
 
 	if (RandEvent1 % 2 == 0)//¾ÇÀçÀÏ ¶§
 	{
 		if (RandEvent1 >= 0 && RandEvent1 <= 5)//¹ÙÀÌ¿À °ü·Ã ÁÖ¶ó¸é
 		{
-			PriceList[0] *= 0.92;
+			PriceList[0] *= T1;
 		}
 		if (RandEvent1 >= 6 && RandEvent1 <= 11)//¹æ»ê °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[1] *= 0.92;
+			 PriceList[1] *= T1;
 		}
 		if (RandEvent1 >= 12 && RandEvent1 <= 17)//¹ÝµµÃ¼ °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[2] *= 0.92;
+			 PriceList[2] *= T1;
 		}
 		if (RandEvent1 >= 18 && RandEvent1 <= 21)//¹ÝµµÃ¼ °ü·Ã ÁÖ¶ó¸é
 		{
-			PriceList[3] *= 0.92;
+			PriceList[3] *= T1;
 		}
 		if (RandEvent1 >= 22 && RandEvent1 <= 27)//ÀÚµ¿Â÷ °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[4] *= 0.92;
+			 PriceList[4] *= T1;
 		}
 	}
 
@@ -448,23 +464,23 @@ void Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//¿ÞÂÊºÎÅÍ Â÷·
 	{
 		if (RandEvent1 >= 0 && RandEvent1 <= 5)//¹ÙÀÌ¿À °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[0] *= 1.05;
+			 PriceList[0] *= T2;
 		}
 		if (RandEvent1 >= 6 && RandEvent1 <= 11)//¹æ»ê °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[1] *= 1.05;
+			 PriceList[1] *= T2;
 		}
 		if (RandEvent1 >= 12 && RandEvent1 <= 17)//¹ÝµµÃ¼ °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[2] *= 1.05;
+			 PriceList[2] *= T2;
 		}
 		if (RandEvent1 >= 18 && RandEvent1 <= 21)//¹ÝµµÃ¼ °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[3] *= 1.05;
+			 PriceList[3] *= T2;
 		}
 		if (RandEvent1 >= 22 && RandEvent1 <= 27)//ÀÚµ¿Â÷ °ü·Ã ÁÖ¶ó¸é
 		{
-			 PriceList[4] *= 1.05;
+			 PriceList[4] *= T2;
 		}
 	}
 
