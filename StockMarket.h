@@ -125,7 +125,7 @@ int Random(int min, int max)
 void EraseDeal()
 {
 	gotoxy(32, 23);
-	printf("                                                     ");
+	printf("                                                                ");
 
 	gotoxy(32, 25);
 	printf("                                                     ");
@@ -136,11 +136,14 @@ void EraseDeal()
 	gotoxy(32, 29);
 	printf("                                                     "); 
 
+	gotoxy(32, 32);
+	printf("                                                  ");
 
-	gotoxy(32, 34);
-	printf("                                                                 ");
-	gotoxy(32, 35);
-	printf("                   ");
+
+	gotoxy(32, 34); 
+	printf("                                                                   ");
+	gotoxy(32, 36);  
+	printf("                       ");
 }
 
 void Deal()
@@ -408,7 +411,7 @@ void Result(char YorN, int Choice, int RandEvent1, int RandEvent2)//¿ÞÂÊºÎÅÍ Â÷·
 		for (int i = 0; i <= 4; i++)
 		{
 			L2 = Random(1, 6);
-			Sleep(100);
+			Sleep(150);
 			T1 = 1.0f - ((float)L2 / 100);//°æ±â°¡ ¾ÈÁÁÀ» ¶§
 
 			PriceList[i] *= T1;//¾ÇÀç
