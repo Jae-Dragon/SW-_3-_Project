@@ -53,11 +53,11 @@ void Event()
 	//StockList 0:제약, 1:방산, 2:반도체, 3:조선, 4:제철
 
 	//초기 주식 가격
-	PriceList[0] = 500;
-	PriceList[1] = 500;
-	PriceList[2] = 500;
-	PriceList[3] = 500;
-	PriceList[4] = 500;
+	PriceList[0] = 1000;
+	PriceList[1] = 1000;
+	PriceList[2] = 1000;
+	PriceList[3] = 1000;
+	PriceList[4] = 1000;
 
 	//각 종목별 이벤트
 	strcpy(EventList1[0], "백신 부작용 발생");//바이오회사 주가 하락
@@ -151,6 +151,10 @@ void Deal()
 	int c, b, s, q;
 	while (1)
 	{
+		textcolor(4);
+		gotoxy(54, 16);
+		printf("현재 보유 Coin: %d", coin);
+
 		//옵션을 선택할 수 있도록 해야하는데 가령 
 		textcolor(15);
 		gotoxy(32, 23);
@@ -229,6 +233,8 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	textcolor(13);
 	gotoxy(32, 16);
 	printf("투자상품 목록");
+
+
 	textcolor(15);
 	gotoxy(32, 18);
 	Sleep(100);
