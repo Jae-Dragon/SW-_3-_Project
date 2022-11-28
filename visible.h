@@ -104,29 +104,29 @@ void Title()
     textcolor(14);
     gotoxy(5, 5);
 	//printf("내일은 주식왕!!!\n");
-    printf("                              ■                                                                   ■■■ \n");
+    printf("                                                                                                    \n");
     gotoxy(5, 6);
-    printf("                    ■■      ■                                                                  ■    ■  ■\n");
+    printf("                                                                                                   ■■■\n");
     gotoxy(5, 7);
-    printf("                  ■    ■    ■        ■■■                    ■■■■■                      ■    ■  ■\n");
+    printf("                    ■■      ■        ■■■                    ■■■■■                      ■    ■  ■\n");
     gotoxy(5, 8);
-    printf("■        ■  ■  ■    ■    ■      ■      ■                  ■                               ■■■   ■■■\n");
+    printf("                  ■    ■    ■      ■      ■                  ■                              ■    ■  ■\n");
     gotoxy(5, 9);
-    printf("■        ■  ■    ■■      ■      ■      ■                  ■■■■■    ■■■■    ■      ■      ■\n");
+    printf("■        ■  ■  ■    ■    ■      ■      ■                  ■■■■■    ■■■■    ■     ■■■   ■■■\n");
     gotoxy(5, 10);
-    printf("■        ■■■              ■        ■■■                    ■                  ■    ■      ■      ■\n");
+    printf("■        ■  ■    ■■      ■        ■■■                    ■                  ■    ■      ■      ■\n");
     gotoxy(5, 11);
-    printf("■        ■  ■                                                  ■■■■■        ■      ■■  ■■■■\n");
+    printf("■        ■■■                                                  ■■■■■        ■      ■■    ■      ■    \n");
     gotoxy(5, 12);
-    printf("■        ■  ■        ■■■■    ■■■■■■■                                ■■      ■            ■■\n");
+    printf("■        ■  ■        ■■■■    ■■■■■■■                                ■■      ■    ■■■■    \n");
     gotoxy(5, 13);
-    printf("■■■■  ■  ■              ■                                ■■■■■■■   ■   ■    ■           ■  ■\n");
+    printf("■■■■  ■  ■              ■                                ■■■■■■■   ■   ■    ■            ■■ \n");
     gotoxy(5, 14);
     printf("                        ■■■■      ■                              ■       ■      ■   ■           ■  ■\n");
     gotoxy(5, 15);
-    printf("                        ■            ■                              ■                    ■            ■■ \n");
+    printf("                        ■            ■                              ■                    ■           ■  ■\n");
     gotoxy(5, 16);
-    printf("                        ■■■■      ■■■■■                      ■\n");
+    printf("                        ■■■■      ■■■■■                      ■                                  ■■ \n");
     textcolor(15);
     gotoxy(7, 23);
     printf("                                  ┌────────────── 사용 키  ──────────────┐");
@@ -200,14 +200,14 @@ void movingAnt()
 
     int isJumping = 0;
     int isBottom = 1;
-    const int gravity = 3; // 늘리면 점프 속도 증가, 줄이면 감소
+    const int gravity = 2; // 늘리면 점프 속도 증가, 줄이면 감소
 
     antY = 26;
 
 
     int leg = 0;
     Background();
-    //int idx = 1;
+    
     
     // 돈 만들기위함
     //gotoxy(cashX, cashY);
@@ -298,6 +298,7 @@ void movingAnt()
         
         distance++;
         DetectCashCollision(antY, cashModel[cash_id], cash_id);
+        DetectCashCollision_hurdle(antY, hurdleModel[hurdle_id]);
        
       
         if (distance != 0 && distance % 100 == 0)//거래소 입장 위해

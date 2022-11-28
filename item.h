@@ -420,3 +420,48 @@ void makeHurdle(void)
 
 	//textcolor(15);//15 : white
 }
+
+// 장애물 충동검사
+int DetectCashCollision_hurdle(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면 0
+{
+	int x, y, a, b;
+	int arrX = 2;
+	int arrY = posY;
+
+	for (x = 0; x < 6; x++)
+	{
+		for (y = 0; y < 9; y++)
+		{
+			if (antModel1[y][x] == 1)
+			{
+				for (a = 0; a < 2; a++)
+				{
+					for (b = 0; b < 4; b++)
+					{
+						if (hurdleModel[b][a] == 1)
+						{
+							if ((arrX + x * 2 == hurdleX * 2 + a * 2) && (arrY + y == hurdleY + b))
+							{
+								//장애물 지우기
+								//gotoxy(cashX, cashY);
+								//DeleteCash(cashModel[cash_id]);
+								hurdleX = -1; // 현재 왼쪽 벽에 닿을 때까지 왼쪽으로 돈 이동하게 해놓아서 임의적으로 좌표 바꾸기
+
+								// 수정필요
+								//10원
+								life -= 10;
+								return;
+								
+
+
+								//return 1;
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+	//return 0;
+}

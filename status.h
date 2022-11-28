@@ -29,6 +29,10 @@ void statInfo()
 	for (i = 0; i < life; i++) {
 		printf("/");
 	}
+	// 라이프바 cls 실행안될때도 빠르게 업데이트를 위함.
+	for (i = 0; i < 100 - life; i++) {
+		printf(" ");
+	}
 
 	SetCurrentCursorPos(5, 2);
 	printf("NAME : ");
