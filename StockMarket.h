@@ -145,12 +145,49 @@ void EraseDeal()
 	gotoxy(32, 36);  
 	printf("                       ");
 }
-
+void DrawingList()
+{
+	gotoxy(3, 10);
+	printf("주식보유량");
+	gotoxy(3, 11);
+	printf("────────────");
+	gotoxy(3, 12);
+	printf("바이오: %2d", QuantityList[0]);
+	gotoxy(3, 13);
+	printf("방산: %2d", QuantityList[1]);
+	gotoxy(3, 14);
+	printf("반도체: %2d", QuantityList[2]);
+	gotoxy(3, 15);
+	printf("조선: %2d", QuantityList[3]);
+	gotoxy(3, 16);
+	printf("자동차: %2d", QuantityList[4]);
+}
+void EraseList()
+{
+	gotoxy(3, 10);
+	printf("            ");
+	gotoxy(3, 11);
+	printf("                            ");
+	gotoxy(3, 12);
+	printf("                  ");
+	gotoxy(3, 13);
+	printf("                  ");
+	gotoxy(3, 14);
+	printf("                  ");
+	gotoxy(3, 15);
+	printf("                  ");
+	gotoxy(3, 16);
+	printf("                  ");
+}
 void Deal()
 {
 	int c, b, s, q;
+	
+
 	while (1)
 	{
+		
+		DrawingList();
 		textcolor(4);
 		gotoxy(54, 16);
 		printf("현재 보유 Coin: %d", coin);
@@ -213,6 +250,7 @@ void Deal()
 		if (M == 0) break;
 
 		EraseDeal();//
+		EraseList();
 		Sleep(1000);
 	}
 }
@@ -238,19 +276,21 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	textcolor(15);
 	gotoxy(32, 18);
 	Sleep(100);
-	printf("종목: 1.%s || 2.%s || 3.%s || 4.%s || 5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
+	printf("종목: 1.%s    2.%s      3.%s    4.%s      5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
 	
 	gotoxy(32, 19);
 	printf("====================================================================");
 
 	gotoxy(32, 20);
-	printf("주가: 1.%d    || 2.%d  || 3.%d    || 4.%d  || 5.%d", PriceList[0], PriceList[1], PriceList[2], PriceList[3], PriceList[4]);
+	printf("주가: 1:%4dcoin, 2:%4dcoin, 3:%4dcoin, 4:%4dcoin, 5:%4dcoin", PriceList[0], PriceList[1], PriceList[2], PriceList[3], PriceList[4]);
 
 	Deal();//매수매도 기능 추가
 	
 
 
 }
+
+
 
 void Drawingmarket()
 {
