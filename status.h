@@ -25,10 +25,12 @@ void statInfo()
 
 	SetCurrentCursorPos(25, 4);
 
+	textcolor(12);
 	printf("♥ : ");
 	for (i = 0; i < life; i++) {
 		printf("/");
 	}
+	textcolor(15);
 	// 라이프바 cls 실행안될때도 빠르게 업데이트를 위함.
 	for (i = 0; i < 100 - life; i++) {
 		printf(" ");
@@ -122,11 +124,11 @@ void gameOver()
 		textcolor(14);
 		gotoxy(5, 5);
 		//printf("내일은 주식왕!!!\n");
-		printf("    $           ■■■■■■■■          $     ■            ■      $     ■■■■■■■      \n");
+		printf("    $           ■■■■■■■■          $     ■            ■      $      ■■■■■■■      \n");
 		gotoxy(5, 6);
-		printf("                       ■                       ■             ■           ■         \n");
+		printf("                       ■                       ■            ■             ■         \n");
 		gotoxy(5, 7);
-		printf("                $      ■           $$          ■             ■            ■       $     \n");
+		printf("                $      ■           $$          ■            ■             ■       $     \n");
 		gotoxy(5, 8);
 		printf("                       ■      $                ■ ■ ■■■■■             ■■■■■■■             \n");
 		gotoxy(5, 9);
@@ -138,18 +140,35 @@ void gameOver()
 		gotoxy(5, 12);
 		printf("\n");
 		gotoxy(5, 13);
-		printf("       $               ■■■■■■■              ■         $    ■                ■■■■■■■ \n");
+		printf("       $                ■■■■■■■              ■         $    ■                ■■■■■■■ \n");
 		gotoxy(5, 14);
-		printf("                       ■               $          ■ ■           ■                ■            ■■\n");
+		printf("                        ■               $          ■ ■           ■                ■            ■■\n");
 		gotoxy(5, 15);
-		printf("                        ■         $               ■   ■         ■     $$         ■               ■ \n");
+		printf("                        ■         $                ■   ■         ■     $$         ■               ■ \n");
 		gotoxy(5, 16);
-		printf("                        ■■■■■■■             ■      ■      ■                ■       $$       ■\n");
-		gotoxy(5, 17);
-		printf("                        ■               $         ■         ■   ■                ■                ■\n");
+		printf("                        ■■■■■■■              ■      ■      ■                ■       $$       ■\n");
+		gotoxy(5, 17); 
+		printf("                        ■               $          ■         ■   ■                ■                ■\n");
 		gotoxy(5, 18);
-		printf("                        ■                         ■   $$      ■ ■      $$        ■            ■■ \n");
+		printf("                        ■                          ■   $$      ■ ■      $$        ■            ■■ \n");
 		gotoxy(5, 19);
-		printf("                        ■■■■■■■             ■              ■                ■■■■■■■\n");
+		printf("                        ■■■■■■■              ■              ■                ■■■■■■■\n");
+	}
+}
+
+void isGoal() {
+	if (coin > seed * 2) {
+		switch (level) {
+		case 0 :
+			level++;
+			seed = coin;
+			break;
+		case 1:
+			level++;
+			seed = coin;
+			break;
+		default :
+			break;
+		}
 	}
 }

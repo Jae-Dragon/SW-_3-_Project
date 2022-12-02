@@ -309,6 +309,7 @@ void movingAnt()
 
         //system("cls"); // 주식 거래소와 별개로 필요
         gettingOld();
+        isGoal();
 
         if (isEnd() == 1) {
             break;

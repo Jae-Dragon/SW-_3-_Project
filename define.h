@@ -7,7 +7,8 @@
 clock_t start;
 
 int distance = 0;//비거리에 따른 거래소 호출을 위해 호출
-int coin = 10000;
+int coin;
+int seed;
 char name[10]; // 플레이어 이름
 int level; // 선택된 난이도
 int life = 100;
