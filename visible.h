@@ -70,20 +70,48 @@ void setLevel()
     printf(" 선택 : ");
     scanf("%d", &level);
 
-    if (level == 0) // 난이도 쉬움
+    while (1)
     {
-        coin = 30000;
-        //speed = 15;
-    }
-    else if (level == 1) // 난이도 보통
-    {
-        coin = 10000;
-        //speed = 10;
-    }
-    else if (level == 2) // 난이도 어려움
-    {
-        coin = 5000;
-        //speed = 5;
+        if (level == 0) // 난이도 쉬움
+        {
+            coin = 30000;
+            //speed = 15;
+            break; 
+        }
+        else if (level == 1) // 난이도 보통
+        {
+            coin = 10000;
+            //speed = 10;
+            break;
+        }
+     
+        else if (level == 2) // 난이도 어려움
+        {
+            coin = 5000;
+            //speed = 5;
+            break;
+        }
+        else
+        {
+            gotoxy(20, 24);
+            printf("                        ");
+            Sleep(700);
+
+            textcolor(5);
+            gotoxy(20, 24);
+            printf("다시 선택하십시오 !");
+
+            
+            gotoxy(20, 24);
+            printf("                        ");
+
+            textcolor(15);
+            Sleep(700);
+            gotoxy(20, 24);
+            printf(" 선택 : ");
+            scanf("%d", &level);
+        }
+
     }
         
 
