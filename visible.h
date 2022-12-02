@@ -156,28 +156,36 @@ void Title()
     gotoxy(5, 16);
     printf("                        ■■■■      ■■■■■                      ■                                  ■■ \n");
     textcolor(15);
-    gotoxy(7, 23);
+    gotoxy(7, 22);
     printf("                                  ┌────────────── 사용 키  ──────────────┐");
-    gotoxy(7, 24);
+    gotoxy(7, 23);
     printf("                                  │                                      │");
-    gotoxy(7, 25);
+    gotoxy(7, 24);
     printf("                                  │     ┌──────┐                         │");
-    gotoxy(7, 26);
+    gotoxy(7, 25);
     printf("                                  │     └──────┘   :   점프              │");
-    gotoxy(7, 27);
+    gotoxy(7, 26);
     printf("                                  │    스베이스 바                       │");
+    gotoxy(7, 27);
+    printf("                                  │                                      │");
     gotoxy(7, 28);
+    printf("                                  │       ┌──┐                           │");
+    gotoxy(7, 29);
+    printf("                                  │       │ P│     :   생명력 구매       │");
+    gotoxy(7, 30);
+    printf("                                  │       └──┘                           │");
+    gotoxy(7, 31);
     printf("                                  └──────────────────────────────────────┘");
     
 
-    gotoxy(25, 31);
+    gotoxy(25, 35);
     printf("시작하려면 Enter 키를 눌러주세요.");
     Sleep(500);
 
     int on_off = 0;
     while (1)
     {
-        gotoxy(25, 31);
+        gotoxy(25, 35);
         if (_kbhit())
         {
             break;
