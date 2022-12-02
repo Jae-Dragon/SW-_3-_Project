@@ -23,3 +23,11 @@ int bombX = 60, bombY = 30;// 초기 값
 int cashColor = 1; // 랜덤아이템
 int hurdleX = 60, hurdleY = 31;
 int hurdle_id = 2;
+
+
+int StockMarketTime = 200;//거래소 들어갈 때까지 남은 시간 
+char EventList1[40][60];//특정 종목 관련
+char EventList2[30][30];//전체 주가 관련
+char StockList[5][30];//종목 종류
+int PriceList[5];//각 종목의 주가
+int QuantityList[5];//각 종목의 보유량

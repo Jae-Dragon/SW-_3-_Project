@@ -301,11 +301,10 @@ void movingAnt()
         DetectCashCollision_hurdle(antY, hurdleModel[hurdle_id]);
        
       
-        if (distance != 0 && distance % 100 == 0)//거래소 입장 위해
-        {
-            system("cls");
-            StockMarket();
-        }
+        LeftTime();//거래소 입장 판정
+        
+
+        DrawingList(76, 3);
 
         //system("cls"); // 주식 거래소와 별개로 필요
         gettingOld();

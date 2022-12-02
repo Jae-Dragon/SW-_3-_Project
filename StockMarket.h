@@ -15,11 +15,6 @@
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약 담당)
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
-char EventList1[40][60];//특정 종목 관련
-char EventList2[30][30];//전체 주가 관련
-char StockList[5][30];//종목 종류
-int PriceList[5];//각 종목의 주가
-int QuantityList[5];//각 종목의 보유량
 
 
 //구현해야 할 순서 
@@ -27,6 +22,9 @@ int QuantityList[5];//각 종목의 보유량
 //2. 플레이어가 사고 파는 것을 결정할 수 있도록 해야함(입력 받아햐 할 것은 종목과 수량) -->
 //3. 주가가 거래소에서 변동되도록 해야 함, Result함수에서 수치 조정
 //4. 주식 수량 보유 현황을 알 수 있도록 해야 함
+
+void StockMarket();
+
 
 void Stock()
 {
@@ -122,6 +120,24 @@ int Random(int min, int max)
 	return random;
 }
 
+void LeftTime()
+{
+	if (StockMarketTime == 0)
+	{
+		system("cls");
+		StockMarketTime = 200;//초기화
+		StockMarket();
+	}
+	textcolor(3);
+	gotoxy(2, 6);
+	printf("거래소 입장까지: %3d", StockMarketTime);
+
+	textcolor(15);
+
+
+	StockMarketTime--;
+}
+
 void EraseDeal()
 {
 	gotoxy(32, 23);
@@ -145,38 +161,38 @@ void EraseDeal()
 	gotoxy(32, 36);  
 	printf("                       ");
 }
-void DrawingList()
+void DrawingList(int x, int y)
 {
-	gotoxy(3, 10);
+	gotoxy(x, y);
 	printf("주식보유량");
-	gotoxy(3, 11);
+	gotoxy(x, y + 1);
 	printf("────────────");
-	gotoxy(3, 12);
+	gotoxy(x, y + 2);
 	printf("바이오: %2d", QuantityList[0]);
-	gotoxy(3, 13);
+	gotoxy(x, y + 3);
 	printf("방산: %2d", QuantityList[1]);
-	gotoxy(3, 14);
+	gotoxy(x, y + 4);
 	printf("반도체: %2d", QuantityList[2]);
-	gotoxy(3, 15);
+	gotoxy(x, y + 5);
 	printf("조선: %2d", QuantityList[3]);
-	gotoxy(3, 16);
+	gotoxy(x, y + 6);
 	printf("자동차: %2d", QuantityList[4]);
 }
-void EraseList()
+void EraseList(int x, int y)
 {
-	gotoxy(3, 10);
+	gotoxy(x, y);
 	printf("            ");
-	gotoxy(3, 11);
+	gotoxy(x, y + 1);
 	printf("                            ");
-	gotoxy(3, 12);
+	gotoxy(x, y + 2);
 	printf("                  ");
-	gotoxy(3, 13);
+	gotoxy(x, y + 3);
 	printf("                  ");
-	gotoxy(3, 14);
+	gotoxy(x, y + 4);
 	printf("                  ");
-	gotoxy(3, 15);
+	gotoxy(x, y + 5);
 	printf("                  ");
-	gotoxy(3, 16);
+	gotoxy(x, y + 6);
 	printf("                  ");
 }
 void Deal()
@@ -187,7 +203,7 @@ void Deal()
 	while (1)
 	{
 		
-		DrawingList();
+		DrawingList(8, 14);
 		textcolor(4);
 		gotoxy(54, 16);
 		printf("현재 보유 Coin: %d", coin);
@@ -209,15 +225,15 @@ void Deal()
 			gotoxy(32, 29);
 			printf("원하시는 종목의 매수량을 입력해주세요: "); scanf("%d", &q);
 
-			if (coin < PriceList[b] * q) {
+			if (coin < PriceList[b - 1] * q) {
 				textcolor(13);
 				gotoxy(32, 32);
 				printf("보유 코인이 부족합니다!!!");
 				textcolor(15);
 			}
 			else {
-				coin -= PriceList[b] * q;//코인 차감
-				QuantityList[b] += q;//매입한 주식의 수 업데이트
+				coin -= PriceList[b - 1] * q;//코인 차감
+				QuantityList[b -1] += q;//매입한 주식의 수 업데이트
 			}
 
 		}
@@ -229,7 +245,7 @@ void Deal()
 			gotoxy(32, 29);
 			printf("원하시는 종목의 매도량을 입력해주세요: "); scanf("%d", &q);
 
-			if (QuantityList[s] < q)
+			if (QuantityList[s - 1] < q)
 			{
 				textcolor(13);
 				gotoxy(32, 32);
@@ -237,8 +253,8 @@ void Deal()
 				textcolor(15);
 			}
 			else {
-				coin += PriceList[s] * q;//
-				QuantityList[s] -= q;//매도한 주식의 수 업데이트
+				coin += PriceList[s - 1] * q;//
+				QuantityList[s - 1] -= q;//매도한 주식의 수 업데이트
 			}
 		}
 		int M;
@@ -250,7 +266,7 @@ void Deal()
 		if (M == 0) break;
 
 		EraseDeal();//
-		EraseList();
+		EraseList(8, 14);
 		Sleep(1000);
 	}
 }
