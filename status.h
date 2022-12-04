@@ -309,7 +309,7 @@ void gameOver()
 			textcolor(15);
 		}
 			
-		if (rate >= 50) {
+		if (rate >= 30) {
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 34);
@@ -318,7 +318,7 @@ void gameOver()
 			textcolor(15);
 		}
 			
-		if (rate >= 100) {
+		if (rate >= 50) {
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 35);
