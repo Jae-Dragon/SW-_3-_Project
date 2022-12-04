@@ -28,7 +28,7 @@ char antModel[9][6] =
     {0,0,0,1,1,0},
     {1,1,1,1,1,0},
     {1,1,1,1,0,0},
-    {1,1,0,1,1,0}
+    {1,1,1,1,1,0}
 };
 
 void setName()
@@ -76,14 +76,14 @@ void setLevel()
         {
             coin = 30000;
             seed = 30000;
-            //speed = 15;
+            speed = 10;
             break; 
         }
         else if (level == 1) // 난이도 보통
         {
             coin = 10000;
             seed = 10000;
-            //speed = 10;
+            speed = 5;
             break;
         }
      
@@ -91,7 +91,7 @@ void setLevel()
         {
             coin = 5000;
             seed = 5000;
-            //speed = 5;
+            speed = 1;
             break;
         }
         else
@@ -347,7 +347,7 @@ void movingAnt()
         textcolor(14);
         printf("현재 수익률 : %.1f %%", rate);
         gotoxy(60, 38);
-        time_s = distance / 1000.0 * speed * 3;
+        time_s = distance / 1000.0 * speed * 6;
         printf("현재 생존시간 : %.1f 초", time_s);
         textcolor(15);
 

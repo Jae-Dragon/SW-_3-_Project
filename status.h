@@ -126,7 +126,7 @@ char antModel2[9][6] =
 	{0,0,0,1,1,0},
 	{1,1,1,1,1,0},
 	{1,1,1,1,0,0},
-	{1,1,0,1,1,0}
+	{1,1,1,1,1,0}
 };
 
 
@@ -236,8 +236,149 @@ void gameOver()
 		printf("수익률 : %.1f %%", rate);
 		gotoxy(10, 39);
 		Sleep(300);
-		printf("생존시간 : %.1f 초", distance / 1000.0 * speed * 3);
+		printf("생존시간 : %.1f 초", time_s);
 
+
+		// 업적 표시
+		Sleep(300);
+		gotoxy(27, 27);
+		printf("업적");
+		gotoxy(27, 29);
+		printf("○ 보유 투자 종목 5개 이상");
+		gotoxy(27, 30);
+		printf("○ 보유 투자 종목 15개 이상");
+		gotoxy(27, 31);
+		printf("○ 보유 투자 종목 30개 이상");
+		gotoxy(27, 33);
+		printf("○ 수익률 10% 이상");
+		gotoxy(27, 34);
+		printf("○ 수익률 30% 이상");
+		gotoxy(27, 35);
+		printf("○ 수익률 50% 이상");
+		gotoxy(27, 37);
+		printf("○ 생존 시간 15초 이상");
+		gotoxy(27, 38);
+		printf("○ 생존 시간 30초 이상");
+		gotoxy(27, 39);
+		printf("○ 생존 시간 60초 이상");
+		Sleep(600);
+
+		// 달성 업적 확인
+		// 총 보유 투자종목 갯수
+		int property = 0; 
+		for (int b = 0; b < 5; b++)
+			property += QuantityList[b];
+
+		if (property >= 5) {
+			//achievement[0] == 1;
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 29);
+			printf("● 보유 투자 종목 5개 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (property >= 15) {
+			//achievement[1] == 1;
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 30);
+			printf("● 보유 투자 종목 10개 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (property >= 30) {
+			//achievement[2] == 1;
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 31);
+			printf("● 보유 투자 종목 15개 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		// 수익률 확인
+		if (rate >= 10) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 33);
+			printf("● 수익률 10% 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (rate >= 50) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 34);
+			printf("● 수익률 30% 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (rate >= 100) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 35);
+			printf("● 수익률 50% 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		// 생존 시간 확인
+		if (time_s >= 15) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 37);
+			printf("● 생존 시간 30초 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (time_s >= 30) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 38);
+			printf("● 생존 시간 60초 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (time_s >= 60) {
+			achieve++;
+			textcolor(11);
+			gotoxy(27, 39);
+			printf("● 생존 시간 90초 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+
+		// 업적에 따른 호칭 부여
+		Sleep(300);
+		gotoxy(55, 27);
+		printf("업적    개 달성!");
+		textcolor(14);
+		gotoxy(58, 27);
+		printf("%d", achieve);
+		textcolor(15);
+		gotoxy(55, 29);
+		printf("당신은               입니다! ");
+		textcolor(14);
+		gotoxy(59, 29);
+		if (achieve <= 3)
+			printf("평범한 개미");
+		else if (achieve <= 5)
+			printf("슈퍼개미");
+		else if (achieve <= 8)
+			printf("투자왕 개미");
+		else if (achieve == 9)
+			printf("워렌버핏 개미");
+
+
+		getch();
 
 
 		

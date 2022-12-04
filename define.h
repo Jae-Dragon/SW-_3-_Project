@@ -16,6 +16,7 @@ double rate = 0; //수익률
 int total; // 환산된 금액 + 코인
 double time_s; // 생존시간
 
+
 int cash_id = 0; // 0 ~ 3
 int cashX = 60, cashY = 20;// 초기 값
 int antY; // 개미출력 시작부분(y좌표)
@@ -34,3 +35,5 @@ char EventList2[30][30];//전체 주가 관련
 char StockList[5][30];//종목 종류
 int PriceList[5];//각 종목의 주가
 int QuantityList[5];//각 종목의 보유량
+
+int achieve = 0;; // 총 달성 갯수
