@@ -339,8 +339,21 @@ void movingAnt()
         DetectCashCollision(antY, cashModel[cash_id], cash_id);
         DetectHurdleCollision(antY, hurdleModel[hurdle_id]);
        
-      
-        //LeftTime();//거래소 입장 판정
+        total = coin;
+        for (int a = 0; a < 5; a++)
+            total += QuantityList[a] * PriceList[a];
+        rate = ((double)total - (double)seed) / (double)seed * 100.0;
+        gotoxy(60, 37);
+        textcolor(14);
+        printf("현재 수익률 : %.1f %%", rate);
+        gotoxy(60, 38);
+        time_s = distance / 1000.0 * speed * 3;
+        printf("현재 생존시간 : %.1f 초", time_s);
+        textcolor(15);
+
+        
+
+        LeftTime();//거래소 입장 판정
         
 
         DrawingList(76, 3);

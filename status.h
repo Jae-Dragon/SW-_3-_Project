@@ -224,17 +224,20 @@ void gameOver()
 		Sleep(300);
 		gotoxy(10, 35);
 		textcolor(15);
-		int total = coin;
+		/*
+		total = coin;
 		for (int a = 0; a < 5; a++)
 			total += QuantityList[a] * PriceList[a];
+			*/
 		printf("총 환산액 : %d", total);
 		Sleep(300);
 		gotoxy(10, 37);
-		double rate = ((double)total - (double)seed) / (double)seed * 100.0;
+		//rate = ((double)total - (double)seed) / (double)seed * 100.0;
 		printf("수익률 : %.1f %%", rate);
 		gotoxy(10, 39);
 		Sleep(300);
 		printf("생존시간 : %.1f 초", distance / 1000.0 * speed * 3);
+
 
 
 		
