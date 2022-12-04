@@ -116,14 +116,30 @@ int isEnd() {
 	}
 }
 
+char antModel2[9][6] =
+{
+	{0,0,0,1,1,0},
+	{0,0,0,1,0,0},
+	{0,0,1,1,1,1},
+	{0,0,1,1,0,1},
+	{0,0,1,1,1,1},
+	{0,0,0,1,1,0},
+	{1,1,1,1,1,0},
+	{1,1,1,1,0,0},
+	{1,1,0,1,1,0}
+};
+
+
 void gameOver() 
 {
+	RemoveCursor();
+	system("cls");
 	while (!(_kbhit())) {
 		SetCurrentCursorPos(50, 25);
 		
 		textcolor(14);
 		gotoxy(5, 5);
-		//printf("내일은 주식왕!!!\n");
+		//THE END
 		printf("    $           ■■■■■■■■          $     ■            ■      $      ■■■■■■■      \n");
 		gotoxy(5, 6);
 		printf("                       ■                       ■            ■             ■         \n");
@@ -153,6 +169,75 @@ void gameOver()
 		printf("                        ■                          ■   $$      ■ ■      $$        ■            ■■ \n");
 		gotoxy(5, 19);
 		printf("                        ■■■■■■■              ■              ■                ■■■■■■■\n");
+
+
+		// 팀원들 이름
+		textcolor(14);
+		gotoxy(55, 40);
+		printf("게임 제작 - 정재용, 소유진, 조언약, 채제우");
+
+		// 개미 - 달성 업적 갯수마다 다르게?
+		textcolor(7);
+		gotoxy(65, 10);
+		int i, j;
+		for (i = 0; i < 8; i++) {
+			for (j = 0; j < 6; j++) {
+				gotoxy(65+j, 10 + i);
+				if (antModel2[i][j] == 1)
+					printf("■");
+			}
+		}
+		gotoxy(65, 18);
+		printf(" /＼ /＼\n");
+
+		Sleep(400);
+
+		// 이름, 골드, 자산, 환산값, 생존시간 점차적으로 표시
+		textcolor(15);
+		gotoxy(10, 25);
+		printf("이 름 : ");
+		for (i = 0; i < 10; i++) {
+			printf("%c", name[i]);
+		}
+		Sleep(300);
+		gotoxy(10, 27);
+		printf("보유골드 : %d", coin);
+		Sleep(300);
+		gotoxy(10, 29);
+		printf("보유자산 : ");
+		Sleep(300);
+		gotoxy(17, 29);
+		textcolor(7);
+		printf("바이오 - %d 주", QuantityList[0]);
+		Sleep(300);
+		gotoxy(17, 30);
+		printf("방  산 - %d 주", QuantityList[1]);
+		Sleep(300);
+		gotoxy(17, 31);
+		printf("반도체 - %d 주", QuantityList[2]);
+		Sleep(300);
+		gotoxy(17, 32);
+		printf("조  선 - %d 주", QuantityList[3]);
+		Sleep(300);
+		gotoxy(17, 33);
+		printf("자동차 - %d 주", QuantityList[4]);
+		Sleep(300);
+		gotoxy(10, 35);
+		textcolor(15);
+		int total = coin;
+		for (int a = 0; a < 5; a++)
+			total += QuantityList[a] * PriceList[a];
+		printf("총 환산액 : %d", total);
+		Sleep(300);
+		gotoxy(10, 37);
+		double rate = ((double)total - (double)seed) / (double)seed * 100.0;
+		printf("수익률 : %.1f %%", rate);
+		gotoxy(10, 39);
+		Sleep(300);
+		printf("생존시간 : %.1f 초", distance / 1000.0 * speed * 3);
+
+
+		
 	}
 }
 

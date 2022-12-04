@@ -75,12 +75,14 @@ void setLevel()
         if (level == 0) // 난이도 쉬움
         {
             coin = 30000;
+            seed = 30000;
             //speed = 15;
             break; 
         }
         else if (level == 1) // 난이도 보통
         {
             coin = 10000;
+            seed = 10000;
             //speed = 10;
             break;
         }
@@ -88,6 +90,7 @@ void setLevel()
         else if (level == 2) // 난이도 어려움
         {
             coin = 5000;
+            seed = 5000;
             //speed = 5;
             break;
         }
@@ -131,7 +134,7 @@ void Title()
 
     textcolor(14);
     gotoxy(5, 5);
-	//printf("내일은 주식왕!!!\n");
+	
     printf("                                                                                                    \n");
     gotoxy(5, 6);
     printf("                                                                                                   ■■■\n");
@@ -334,10 +337,10 @@ void movingAnt()
         
         distance++;
         DetectCashCollision(antY, cashModel[cash_id], cash_id);
-        DetectCashCollision_hurdle(antY, hurdleModel[hurdle_id]);
+        DetectHurdleCollision(antY, hurdleModel[hurdle_id]);
        
       
-        LeftTime();//거래소 입장 판정
+        //LeftTime();//거래소 입장 판정
         
 
         DrawingList(76, 3);

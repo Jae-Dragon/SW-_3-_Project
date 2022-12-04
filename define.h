@@ -11,7 +11,7 @@ int coin;
 int seed;
 char name[10]; // 플레이어 이름
 int level; // 선택된 난이도
-int life = 100;
+int life = 50;
 
 int cash_id = 0; // 0 ~ 3
 int cashX = 60, cashY = 20;// 초기 값

@@ -422,7 +422,7 @@ void makeHurdle(void)
 }
 
 // 장애물 충동검사
-int DetectCashCollision_hurdle(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면 0
+int DetectHurdleCollision(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면 0
 {
 	int x, y, a, b;
 	int arrX = 2;
