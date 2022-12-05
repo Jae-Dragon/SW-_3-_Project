@@ -51,36 +51,25 @@ char cashModel[][3][7] =
 	}
 };
 
-char bombModel[][5][5] =
+char hurdleModel[][4][1] =
 {
 	{
-		{0,0,0,1,0},
-		{0,0,1,0,0},
-		{0,1,1,1,0},
-		{1,1,1,1,1},
-		{0,1,1,1,0}
-	}
-};
-
-char hurdleModel[][4][2] =
-{
-	{
-		{0,0},
-		{0,0},
-		{1,1},
-		{1,1}
+		{0},
+		{0},
+		{1},
+		{1}
 	},
 	{
-		{0,0},
-		{1,1},
-		{1,1},
-		{1,1}
+		{0},
+		{1},
+		{1},
+		{1}
 	},
 	{
-		{1,1},
-		{1,1},
-		{1,1},
-		{1,1}
+		{1},
+		{1},
+		{1},
+		{1}
 	}
 };
 
@@ -291,78 +280,14 @@ void makeCash(void)
 	textcolor(15);//15 : white
 }
 
-void ShowBomb(char bombInfo[5][5])
-{
-	int x, y;
-	COORD curPos = GetCurrentCursorPos();
 
-	for (y = 0; y < 5; y++)
-		for (x = 0; x < 5; x++)
-		{
-			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
-
-			if (bombInfo[y][x] == 1) printf("●");
-			
-		}
-	SetCurrentCursorPos(curPos.X, curPos.Y);
-}
-
-void DeleteBomb(char bombInfo[5][5])
-{
-	int x, y;
-	COORD curPos = GetCurrentCursorPos();
-
-	for (y = 0; y < 5; y++)
-		for (x = 0; x < 5; x++)
-		{
-			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
-
-			if (bombInfo[y][x] == 1) printf("  ");
-
-		}
-	SetCurrentCursorPos(curPos.X, curPos.Y);
-}
-
-void ShiftLeftBomb(void)
-{
-	COORD curPos = GetCurrentCursorPos();
-
-	DeleteBomb(bombModel[bomb_id]);
-	curPos.X -= 2;
-	SetCurrentCursorPos(curPos.X, curPos.Y);
-	ShowBomb(bombModel[bomb_id]);
-}
-
-void makeBomb(void)
-{
-	gotoxy(bombX, bombY);
-
-	textcolor(12);//10 : red
-
-	ShiftLeftBomb(bombModel[bomb_id]);
-	bombX -= 1;
-
-	//왼쪽 벽에 닿았을 때
-	if (bombX < 0)
-	{
-		//bomb_id = (rand() % 1);
-		gotoxy(bombX, bombY);
-		bombX = 60;
-		bombY = rand() % 19 + 13;
-		DeleteBomb(bombModel[bomb_id]);
-	}
-
-
-	textcolor(15);//15 : white
-}
-
-void ShowHurdle(char hurdleInfo[4][2])
+void ShowHurdle(char hurdleInfo[4][1])
 {
 	int x, y;
 	COORD curPos = GetCurrentCursorPos();
 
 	for (y = 0; y < 4; y++)
-		for (x = 0; x < 2; x++)
+		for (x = 0; x < 1; x++)
 		{
 			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
 
@@ -373,13 +298,13 @@ void ShowHurdle(char hurdleInfo[4][2])
 }
 
 
-void DeleteHurdle(char hurdleInfo[4][2])
+void DeleteHurdle(char hurdleInfo[4][1])
 {
 	int x, y;
 	COORD curPos = GetCurrentCursorPos();
 
 	for (y = 0; y < 4; y++)
-		for (x = 0; x < 2; x++)
+		for (x = 0; x < 1; x++)
 		{
 			SetCurrentCursorPos(curPos.X + (x * 2), curPos.Y + y);
 
@@ -434,7 +359,7 @@ int DetectHurdleCollision(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면
 		{
 			if (antModel1[y][x] == 1)
 			{
-				for (a = 0; a < 2; a++)
+				for (a = 0; a < 1; a++)
 				{
 					for (b = 0; b < 4; b++)
 					{
