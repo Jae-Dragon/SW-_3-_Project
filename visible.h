@@ -354,7 +354,7 @@ void movingAnt()
         textcolor(14);
         printf("현재 수익률 : %.1f %%", rate);
         gotoxy(60, 38);
-        time_s = distance / 1000.0 * speed * 6;
+        time_s = distance / 1000.0 * 10 * 6;
         printf("현재 생존시간 : %.1f 초", time_s);
         textcolor(15);
 

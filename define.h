@@ -37,4 +37,4 @@ char StockList[5][30];//종목 종류
 int PriceList[5];//각 종목의 주가
 int QuantityList[5];//각 종목의 보유량
 
-int achieve = 0;; // 총 달성 갯수
+int achieve = 0; // 총 달성 갯수

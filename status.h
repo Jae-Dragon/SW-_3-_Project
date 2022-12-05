@@ -264,17 +264,17 @@ void gameOver()
 		gotoxy(27, 31);
 		printf("○ 보유 투자 종목 30개 이상");
 		gotoxy(27, 33);
-		printf("○ 수익률 10% 이상");
+		printf("○ 수익률 10%% 이상");
 		gotoxy(27, 34);
-		printf("○ 수익률 30% 이상");
+		printf("○ 수익률 50%% 이상");
 		gotoxy(27, 35);
-		printf("○ 수익률 50% 이상");
+		printf("○ 수익률 100%% 이상");
 		gotoxy(27, 37);
-		printf("○ 생존 시간 15초 이상");
-		gotoxy(27, 38);
 		printf("○ 생존 시간 30초 이상");
-		gotoxy(27, 39);
+		gotoxy(27, 38);
 		printf("○ 생존 시간 60초 이상");
+		gotoxy(27, 39);
+		printf("○ 생존 시간 90초 이상");
 		Sleep(600);
 
 		// 달성 업적 확인
@@ -298,7 +298,7 @@ void gameOver()
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 30);
-			printf("● 보유 투자 종목 10개 이상");
+			printf("● 보유 투자 종목 15개 이상");
 			Sleep(300);
 			textcolor(15);
 		}
@@ -308,7 +308,7 @@ void gameOver()
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 31);
-			printf("● 보유 투자 종목 15개 이상");
+			printf("● 보유 투자 종목 30개 이상");
 			Sleep(300);
 			textcolor(15);
 		}
@@ -318,16 +318,7 @@ void gameOver()
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 33);
-			printf("● 수익률 10% 이상");
-			Sleep(300);
-			textcolor(15);
-		}
-			
-		if (rate >= 30) {
-			achieve++;
-			textcolor(11);
-			gotoxy(27, 34);
-			printf("● 수익률 30% 이상");
+			printf("● 수익률 10%% 이상");
 			Sleep(300);
 			textcolor(15);
 		}
@@ -335,14 +326,23 @@ void gameOver()
 		if (rate >= 50) {
 			achieve++;
 			textcolor(11);
+			gotoxy(27, 34);
+			printf("● 수익률 50%% 이상");
+			Sleep(300);
+			textcolor(15);
+		}
+			
+		if (rate >= 100) {
+			achieve++;
+			textcolor(11);
 			gotoxy(27, 35);
-			printf("● 수익률 50% 이상");
+			printf("● 수익률 100%% 이상");
 			Sleep(300);
 			textcolor(15);
 		}
 			
 		// 생존 시간 확인
-		if (time_s >= 15) {
+		if (time_s >= 30) {
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 37);
@@ -351,7 +351,7 @@ void gameOver()
 			textcolor(15);
 		}
 			
-		if (time_s >= 30) {
+		if (time_s >= 60) {
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 38);
@@ -360,7 +360,7 @@ void gameOver()
 			textcolor(15);
 		}
 			
-		if (time_s >= 60) {
+		if (time_s >= 90) {
 			achieve++;
 			textcolor(11);
 			gotoxy(27, 39);
