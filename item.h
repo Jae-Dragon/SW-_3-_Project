@@ -266,7 +266,7 @@ void makeCash(void)
 		cash_id = (rand() % 5);
 		gotoxy(cashX, cashY);
 		cashX = 60;
-		cashY = rand() % 19 + 13;
+		cashY = rand() % 19 + 10;
 		DeleteCash(cashModel[cash_id]);
 	}
 
