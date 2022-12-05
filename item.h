@@ -16,7 +16,6 @@
 #include "item.h"//아이템 관련 함수들만 모아두는 곳(언약 담당)
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
-
 char cashModel[][3][7] =
 {
 	// 10원 2 : 테두리, 9 : 공백 7: 물음표 8 : heart
@@ -88,6 +87,7 @@ char antModel1[9][6] =
    {1,1,1,1,0,0},
    {1,1,1,1,1,0}
 };
+
 
 void DeleteCash(char cashInfo[3][7])
 {
@@ -266,7 +266,7 @@ void makeCash(void)
 		cash_id = (rand() % 5);
 		gotoxy(cashX, cashY);
 		cashX = 60;
-		cashY = rand() % 19 + 10;
+		cashY = rand() % 17 + 13;
 		DeleteCash(cashModel[cash_id]);
 	}
 

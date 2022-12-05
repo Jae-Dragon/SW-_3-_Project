@@ -266,14 +266,21 @@ void movingAnt()
         makeCash();
         if (cashX < 30) delay = 1;
         if (delay == 1) makeHurdle();
-        //makeBomb();
+
         // 스페이스 키를 누르고, 바닥일 때만 점프가능
         if (GetKeyDown() == ' ' && isBottom)
         {
             isJumping = 1;
             isBottom = 0;
         }
-
+        /* 언약 - 생명력 구매
+        if (GetKeyDown() == 'p' || GetKeyDown() == 'P' || GetKeyDown() == 'ㅔ' || GetKeyDown() == 'ㅖ')
+        {
+            coin -= pur_heart;
+            life += 30;
+            pur_heart += 5000;
+        }
+        */
         if (isJumping)
         {
             antY -= gravity;

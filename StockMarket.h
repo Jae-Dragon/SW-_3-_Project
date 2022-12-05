@@ -177,6 +177,9 @@ void DrawingList(int x, int y)
 	printf("조선: %2d", QuantityList[3]);
 	gotoxy(x, y + 6);
 	printf("자동차: %2d", QuantityList[4]);
+	// 언약
+	gotoxy(x, y + 8);
+	printf("생명력 구매 'p' : %d coin",pur_heart);
 }
 void EraseList(int x, int y)
 {
