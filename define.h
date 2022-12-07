@@ -36,5 +36,7 @@ char EventList2[30][30];//전체 주가 관련
 char StockList[5][30];//종목 종류
 int PriceList[5];//각 종목의 주가
 int QuantityList[5];//각 종목의 보유량
+int BeforePrice[5];//거래소에서 전 주가
+
 
 int achieve = 0; // 총 달성 갯수
