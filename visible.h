@@ -273,11 +273,12 @@ void movingAnt()
             isJumping = 1;
             isBottom = 0;
         }
-        /* 언약 - 생명력 구매
+        //언약 - 생명력 구매
+        /*
         if (GetKeyDown() == 'p' || GetKeyDown() == 'P' || GetKeyDown() == 'ㅔ' || GetKeyDown() == 'ㅖ')
         {
             coin -= pur_heart;
-            life += 30;
+            //life += 30;
             pur_heart += 5000;
         }
         */
