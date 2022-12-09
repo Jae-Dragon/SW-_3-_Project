@@ -51,11 +51,12 @@ void Event()
 	//StockList 0:제약, 1:방산, 2:반도체, 3:조선, 4:제철
 
 	//초기 주식 가격
-	PriceList[0] = 1000;
-	PriceList[1] = 1000;
-	PriceList[2] = 1000;
-	PriceList[3] = 1000;
-	PriceList[4] = 1000;
+
+	for (int i = 0; i < 5; i++)//거래소의 주가를 미리 저장
+	{
+		PriceList[i] = 1000;
+		BeforePrice[i] = 1000;
+	}
 
 	//각 종목별 이벤트
 	strcpy(EventList1[0], "백신 부작용 발생");//바이오회사 주가 하락
@@ -226,7 +227,7 @@ void Deal()
 			gotoxy(32, 27);
 			printf("거래를 희망하는 종목의 번호를 입력해주세요: "); scanf("%d", &b);
 			gotoxy(32, 29);
-			printf("원하시는 종목의 매수량을 입력해주세요: "); scanf("%d", &q);
+			printf("원하시는 종목의 매수량을 입력해주세요(최대: %d주): ", (coin / PriceList[b-1])); scanf("%d", &q);
 
 			if (coin < PriceList[b - 1] * q) {
 				textcolor(13);
@@ -246,7 +247,7 @@ void Deal()
 			gotoxy(32, 27);
 			printf("거래를 희망하는 종목의 번호를 입력해주세요: "); scanf("%d", &s);
 			gotoxy(32, 29);
-			printf("원하시는 종목의 매도량을 입력해주세요: "); scanf("%d", &q);
+			printf("원하시는 종목의 매도량을 입력해주세요(최대: %d주):", QuantityList[s-1]); scanf("%d", &q);
 
 			if (QuantityList[s - 1] < q)
 			{
@@ -295,13 +296,19 @@ void Opinion(char* YorN, int* Choice, int* random1, int* random2)
 	textcolor(15);
 	gotoxy(32, 18);
 	Sleep(100);
-	printf("종목: 1.%s    2.%s      3.%s    4.%s      5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
+	printf("  종목: 1.%s    2.%s      3.%s    4.%s      5.%s", StockList[0], StockList[1], StockList[2], StockList[3], StockList[4]);
 	
 	gotoxy(32, 19);
 	printf("====================================================================");
 
 	gotoxy(32, 20);
-	printf("주가: 1:%4dcoin, 2:%4dcoin, 3:%4dcoin, 4:%4dcoin, 5:%4dcoin", PriceList[0], PriceList[1], PriceList[2], PriceList[3], PriceList[4]);
+	printf("  주가: 1:%4dcoin, 2:%4dcoin, 3:%4dcoin, 4:%4dcoin, 5:%4dcoin", PriceList[0], PriceList[1], PriceList[2], PriceList[3], PriceList[4]);
+
+	textcolor(3);
+	gotoxy(32, 21);
+	printf("Before: 1:%4dcoin, 2:%4dcoin, 3:%4dcoin, 4:%4dcoin, 5:%4dcoin", BeforePrice[0], BeforePrice[1], BeforePrice[2], BeforePrice[3], BeforePrice[4]);
+	
+	textcolor(15);
 
 	Deal();//매수매도 기능 추가
 	
@@ -564,10 +571,15 @@ void StockMarket()
 	int Choice, random1, random2;
 	char YORN;
 
+
 	Drawingmarket();//거래소 형태 그려주기
 	Opinion(&YORN, &Choice, &random1, &random2);//플레이어의 선택 수용
 	Sleep(600);
 
+	for (int i = 0; i < 5; i++)//거래소의 주가를 미리 저장
+	{
+		BeforePrice[i] = PriceList[i];
+	}
 
 	Result(YORN, Choice, random1, random2);//시장 상황 반영
 	
