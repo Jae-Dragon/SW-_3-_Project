@@ -427,6 +427,7 @@ void gameOver()
 	}
 }
 
+
 void isGoal() {
 	if (coin > seed * 2) {
 		switch (level) {

@@ -106,6 +106,31 @@ void DeleteCash(char cashInfo[3][7])
 }
 
 
+void ShowText(int amount)
+{
+	gotoxy(8, antY);
+	COORD curPos = GetCurrentCursorPos();
+	text_x = curPos.X;
+	text_y = curPos.Y;
+
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+
+	if (cash_id == 4) textcolor(12); // red
+	else textcolor(10);//10 : green
+
+	printf("+%d up", amount);
+
+	textcolor(15);//15 : white
+
+}
+
+void DeleteText(void)
+{
+	SetCurrentCursorPos(text_x, text_y);
+	printf("        ");
+}
+
+
 
 int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 1, 아니면 0
 {
@@ -113,6 +138,7 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 	int arrX = 2;
 	int arrY = posY;
 
+	int amount;
 	for (x = 0; x < 6; x++)
 	{
 		for (y = 0; y < 9; y++)
@@ -136,16 +162,22 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 								//10원
 								if (cash_id == 0) {
 									coin += 10;
+									amount = 10;
+									ShowText(amount);
 									return ;
 								}
 								//100원
 								else if (cash_id == 1) {
 									coin += 100;
+									amount = 100;
+									ShowText(amount);
 									return;
 								}
 								//500원
 								else if (cash_id == 2) {
 									coin += 500;
+									amount = 500;
+									ShowText(amount);
 									return;
 								}
 								//랜덤
@@ -156,42 +188,62 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 									{
 										case 1 :
 											coin += 10;
+											amount = 10;
+											ShowText(amount);
 											break;
 
 										case 2:
-											coin += 10;
+											coin += 100;
+											amount = 100;
+											ShowText(amount);
 											break;
 
 										case 3:
-											coin += 10;
+											coin += 100;
+											amount = 100;
+											ShowText(amount);
 											break;
 
 										case 4:
 											coin += 100;
+											amount = 100;
+											ShowText(amount);
 											break;
 
 										case 5:
-											coin += 100;
+											coin += 500;
+											amount = 500;
+											ShowText(amount);
 											break;
 
 										case 6:
-											coin += 100;
+											coin += 500;
+											amount = 500;
+											ShowText(amount);
 											break;
 
 										case 7:
 											coin += 500;
+											amount = 500;
+											ShowText(amount);
 											break;
 
 										case 8:
-											coin += 500;
+											coin += 1000;
+											amount = 1000;
+											ShowText(amount);
 											break;
 
 										case 9:
 											coin += 1000;
+											amount = 1000;
+											ShowText(amount);
 											break;
 
 										case 10:
 											coin += 2000;
+											amount = 2000;
+											ShowText(amount);
 											break;
 
 										default:
@@ -202,6 +254,8 @@ int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 
 								else if (cash_id == 4)
 								{
 									life += 5;
+									amount = 5;
+									ShowText(amount);
 									return;
 								}
 								
@@ -390,3 +444,4 @@ int DetectHurdleCollision(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면
 	}
 	//return 0;
 }
+

@@ -28,6 +28,7 @@ int cashColor = 1; // 랜덤아이템
 int hurdleX = 60, hurdleY = 31;
 int hurdle_id = 2;
 int pur_heart = 5000; // 생명력 구매가
+int text_x, text_y;
 
 
 int StockMarketTime = 200;//거래소 들어갈 때까지 남은 시간 
