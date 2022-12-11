@@ -117,7 +117,6 @@ void ShowText(int amount)
 
 	if (cash_id == 4) textcolor(12); // red
 	else textcolor(10);//10 : green
-
 	printf("+%d up", amount);
 
 	textcolor(15);//15 : white
@@ -130,6 +129,29 @@ void DeleteText(void)
 	printf("        ");
 }
 
+
+void ShowHurdleText(int amount)
+{
+	gotoxy(8, antY);
+	COORD curPos = GetCurrentCursorPos();
+	htext_x = curPos.X;
+	htext_y = curPos.Y;
+
+	SetCurrentCursorPos(curPos.X, curPos.Y);
+
+	textcolor(12); // red
+
+	printf("-%d hp", amount);
+
+	textcolor(15);//15 : white
+
+}
+
+void DeleteHurdleText(void)
+{
+	SetCurrentCursorPos(htext_x, htext_y);
+	printf("        ");
+}
 
 
 int DetectCashCollision(int posY, char cashModel[3][7], int cash_id) // 충돌 시 1, 아니면 0
@@ -406,7 +428,7 @@ int DetectHurdleCollision(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면
 	int x, y, a, b;
 	int arrX = 2;
 	int arrY = posY;
-
+	int amount;
 	for (x = 0; x < 6; x++)
 	{
 		for (y = 0; y < 9; y++)
@@ -429,6 +451,8 @@ int DetectHurdleCollision(int posY, char hurdleModel[4][2]) // 충돌 시 1, 아니면
 								// 수정필요
 								//10원
 								life -= 10;
+								amount = 10;
+								ShowHurdleText(amount);
 								return;
 								
 

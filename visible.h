@@ -267,6 +267,7 @@ void movingAnt()
         if (cashX == 50) DeleteText();
         if (cashX < 30) delay = 1;
         if (delay == 1) makeHurdle();
+        if (hurdleX == 50) DeleteHurdleText();
 
        
         // 스페이스 키를 누르고, 바닥일 때만 점프가능

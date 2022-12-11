@@ -434,10 +434,14 @@ void isGoal() {
 		case 0 :
 			level++;
 			seed = coin;
+			gotoxy(1, antY + 1);
+			printf("LEVEL UP!");
 			break;
 		case 1:
 			level++;
 			seed = coin;
+			gotoxy(1, antY + 1);
+			printf("LEVEL UP!");
 			break;
 		default :
 			break;
