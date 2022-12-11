@@ -11,7 +11,7 @@ int coin;
 int seed;
 char name[10]; // 플레이어 이름
 int level; // 선택된 난이도
-int life = 100;
+double life = 100.0;
 double rate = 0; //수익률
 int total; // 환산된 금액 + 코인
 double time_s; // 생존시간

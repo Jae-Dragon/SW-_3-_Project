@@ -79,14 +79,14 @@ void setLevel()
         {
             coin = 30000;
             seed = 30000;
-            speed = 10;
+            speed = 100;
             break; 
         }
         else if (level == 1) // 난이도 보통
         {
             coin = 10000;
             seed = 10000;
-            speed = 5;
+            speed = 50;
             break;
         }
      
@@ -94,7 +94,7 @@ void setLevel()
         {
             coin = 5000;
             seed = 5000;
-            speed = 1;
+            speed = 10;
             break;
         }
         else
@@ -162,26 +162,26 @@ void Title()
     gotoxy(5, 16);
     printf("                        ■■■■      ■■■■■                      ■                                  ■■ \n");
     textcolor(15);
-    gotoxy(7, 22);
-    printf("                                  ┌────────────── 사용 키  ──────────────┐");
-    gotoxy(7, 23);
-    printf("                                  │                                      │");
-    gotoxy(7, 24);
-    printf("                                  │     ┌──────┐                         │");
-    gotoxy(7, 25);
-    printf("                                  │     └──────┘   :   점프              │");
-    gotoxy(7, 26);
-    printf("                                  │    스베이스 바                       │");
-    gotoxy(7, 27);
-    printf("                                  │                                      │");
-    gotoxy(7, 28);
-    printf("                                  │       ┌──┐                           │");
-    gotoxy(7, 29);
-    printf("                                  │       │ P│     :   생명력 구매       │");
-    gotoxy(7, 30);
-    printf("                                  │       └──┘                           │");
-    gotoxy(7, 31);
-    printf("                                  └──────────────────────────────────────┘");
+    gotoxy(1, 22);
+    printf("                ┌────────────── 사용 키  ──────────────┐");
+    gotoxy(1, 23);
+    printf("                │                                      │");
+    gotoxy(1, 24);
+    printf("                │     ┌──────┐                         │");
+    gotoxy(1, 25);
+    printf("                │     └──────┘   :   점프              │");
+    gotoxy(1, 26);
+    printf("                │    스베이스 바                       │");
+    gotoxy(1, 27);
+    printf("                │                                      │");
+    gotoxy(1, 28);
+    printf("                │       ┌──┐                           │");
+    gotoxy(1, 29);
+    printf("                │       │ P│     :   생명력 구매       │");
+    gotoxy(1, 30);
+    printf("                │       └──┘                           │");
+    gotoxy(1, 31);
+    printf("                └──────────────────────────────────────┘");
     
 
     gotoxy(25, 35);

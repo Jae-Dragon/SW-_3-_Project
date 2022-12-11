@@ -68,13 +68,13 @@ void gettingOld()
 		// 난이도에 따른 차감속도 조정
 		switch (level) {
 		case 0 :
-			life -= 1;
+			life -= 0.5;
 			break;
 		case 1 :
-			life -= 2;
+			life -= 1;
 			break;
 		case 2 :
-			life -= 3;
+			life -= 1.5;
 			break;
 		default :
 			life -= 1;
