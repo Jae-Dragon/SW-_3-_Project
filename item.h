@@ -127,6 +127,8 @@ void DeleteText(void)
 {
 	SetCurrentCursorPos(text_x, text_y);
 	printf("        ");
+	SetCurrentCursorPos(text_x, text_y - 1);
+	printf("        ");
 }
 
 

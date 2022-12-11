@@ -429,19 +429,24 @@ void gameOver()
 
 
 void isGoal() {
-	if (coin > seed * 2) {
+	if ((double)coin > (double)seed * 2.0) { // 2배에서 축소 할 수 있으니 double형으로 바꾸어놓았습니다
 		switch (level) {
 		case 0 :
 			level++;
 			seed = coin;
-			gotoxy(1, antY + 1);
-			printf("LEVEL UP!");
+			// 레벨업 텍스트
+			gotoxy(8, antY-1);
+			textcolor(11);
+			printf("LEVEL UP  ");
+			textcolor(15);
 			break;
 		case 1:
 			level++;
 			seed = coin;
-			gotoxy(1, antY + 1);
-			printf("LEVEL UP!");
+			gotoxy(8, antY-1);
+			textcolor(11);
+			printf("LEVEL UP  ");
+			textcolor(15);
 			break;
 		default :
 			break;

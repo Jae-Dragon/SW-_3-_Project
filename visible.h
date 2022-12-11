@@ -267,10 +267,10 @@ void movingAnt()
     while (1)
     {
         makeCash();
-        if (cashX == 50) DeleteText();
+        if (cashX == 45) DeleteText();
         if (cashX < 30) delay = 1;
         if (delay == 1) makeHurdle();
-        if (hurdleX == 50) DeleteHurdleText();
+        if (hurdleX == 45) DeleteHurdleText();
 
 
         for (int i = 0; i < 20; i++)
