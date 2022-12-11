@@ -183,15 +183,86 @@ void Title()
     gotoxy(1, 31);
     printf("                └──────────────────────────────────────┘");
     
+    // 아이템 설명
+    gotoxy(30, 22);
+    printf("┌────────────────────────────  아이템 설명  ────────────────────────────┐");
+    gotoxy(30, 23);
+    printf("│                                                                       │");
+    gotoxy(30, 24);
+    printf("│               ■                      ");
+    textcolor(10);
+    printf("* * * * * * *");
+    textcolor(15);
+    printf("                   │");
+    gotoxy(30, 25);
+    printf("│           ■  ■      :   방해물      ");
+    textcolor(10);
+    printf("*   1 0 0   *");
+    textcolor(15);
+    printf("   :   코인UP      │");
+    gotoxy(30, 26);
+    printf("│       ■, ■, ■                      ");
+    textcolor(10);
+    printf("* * * * * * *");
+    textcolor(15);
+    printf("                   │");
+    gotoxy(30, 27);
+    printf("│                                                                       │");
+    gotoxy(30, 28);
+    printf("│       ");
+    textcolor(12);
+    printf("* * * * * * *                   ");
+    textcolor(9);
+    printf("* * * * * * *");
+    textcolor(15);
+    printf("                   │");
+    gotoxy(30, 29);
+    printf("│       ");
+    textcolor(12);
+    printf("*   ♥♥♥  *");
+    textcolor(15);
+    printf("   :   생명력UP    ");
+    textcolor(9);
+    printf("*   ? ? ?   *");
+    textcolor(15);
+    printf("   :   랜덤코인    │");
+    gotoxy(30, 30);
+    printf("│       ");
+    textcolor(12);
+    printf("* * * * * * *                   ");
+    textcolor(9);
+    printf("* * * * * * *");
+    textcolor(15);
+    printf("                   │");
+    gotoxy(30, 31);
+    printf("└───────────────────────────────────────────────────────────────────────┘");
+ 
 
-    gotoxy(25, 35);
+    // 개미
+    textcolor(7);
+    gotoxy(65, 8);
+    int i, j;
+    for (i = 0; i < 8; i++) {
+        for (j = 0; j < 6; j++) {
+            gotoxy(65 + j, 8 + i);
+            if (antModel[i][j] == 1)
+                printf("■");
+        }
+    }
+    gotoxy(65, 16);
+    printf(" /＼ /＼\n");
+    textcolor(15);
+
+
+
+    gotoxy(30, 35);
     printf("시작하려면 Enter 키를 눌러주세요.");
     Sleep(500);
 
     int on_off = 0;
     while (1)
     {
-        gotoxy(25, 35);
+        gotoxy(30, 35);
         if (_kbhit())
         {
             break;

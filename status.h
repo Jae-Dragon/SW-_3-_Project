@@ -199,11 +199,9 @@ void gameOver()
 					printf("■");
 			}
 		}
-
-		textcolor(14);
 		gotoxy(65, 18);
 		printf(" /＼ /＼\n");
-
+		textcolor(14);
 		Sleep(400);
 
 		// 이름, 골드, 자산, 환산값, 생존시간 점차적으로 표시
