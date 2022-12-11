@@ -17,6 +17,9 @@
 #include "status.h"//상태창 관련 함수들만 모아두는 곳(제우 담당)
 
 
+#define SPACE 32
+#define UP 72
+
 // 개미 배열 (다리위치까지 포함됨.)
 char antModel[9][6] =
 {
@@ -269,14 +272,51 @@ void movingAnt()
         if (delay == 1) makeHurdle();
         if (hurdleX == 50) DeleteHurdleText();
 
-       
-        // 스페이스 키를 누르고, 바닥일 때만 점프가능
-        if (GetKeyDown() == ' ' && isBottom)
+
+        for (int i = 0; i < 20; i++)
         {
-            isJumping = 1;
-            isBottom = 0;
+            if (_kbhit() != 0)
+            {
+                int key = _getch();
+                switch (key)
+                {
+                    case SPACE:
+                        if (isBottom)
+                        {
+                            isJumping = 1;
+                            isBottom = 0;
+                        }
+
+                        
+                        
+                        break;
+                    case 'p':
+                        if (coin >= pur_heart)
+                        {
+                            coin -= pur_heart;
+                            life += 20;
+                            pur_heart += 5000;
+                        }
+                        break;
+                    case 'P':
+                        if (coin >= pur_heart)
+                        {
+                            coin -= pur_heart;
+                            life += 20;
+                            pur_heart += 5000;
+                        }
+                        break;
+
+              
+                        
+
+                }
+            }
+            
+            
         }
-        
+    
+        Sleep(speed);
         /*
         if (GetKeyDown() == 'p' || GetKeyDown() == 'P' || GetKeyDown() == 'ㅔ' || GetKeyDown() == 'ㅖ')
         {
@@ -285,6 +325,7 @@ void movingAnt()
             pur_heart += 5000;
         }
         */
+        
         if (isJumping)
         {
             antY -= gravity;
@@ -294,7 +335,7 @@ void movingAnt()
             antY += gravity;
         }
 
-        if (antY >= 26) 
+        if (antY >= 26)
         {
             antY = 26;
             isBottom = 1;
@@ -306,8 +347,8 @@ void movingAnt()
         }
 
         Background();
-        
-        
+
+
         // 개미 흔적 지우기
         gotoxy(0, pre_ant);
         printf("              \n");
@@ -320,13 +361,13 @@ void movingAnt()
         printf("              \n");
         printf("              \n");
 
-        
+
         pre_ant = antY;
-       
+
         int i, j;
         for (i = 0; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gotoxy(j+1, antY+i);
+                gotoxy(j + 1, antY + i);
                 if (antModel[i][j] == 1)
                     printf("■");
             }
@@ -343,12 +384,11 @@ void movingAnt()
             printf(" ＼/ ＼/\n");
             leg = 0;
         }
-        
-        Sleep(speed);
-        
+    
         distance++;
         DetectCashCollision(antY, cashModel[cash_id], cash_id);
         DetectHurdleCollision(antY, hurdleModel[hurdle_id]);
+        
        
         total = coin;
         for (int a = 0; a < 5; a++)
