@@ -484,6 +484,10 @@ void movingAnt()
         gettingOld();
         isGoal();
 
+        if (isWarrenBuffit() == 1) {
+            break;
+        }
+
         if (isEnd() == 1) {
             break;
         }

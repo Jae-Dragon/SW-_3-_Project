@@ -128,6 +128,29 @@ char antModel2[9][6] =
 	{1,1,1,1,0,0},
 	{1,1,1,1,1,0}
 };
+char antFace[20][20] =
+{
+	{0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,0},
+	{1,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1},
+	{0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0},
+	{0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
+	{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0},
+	{0,0,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,0},
+	{0,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,0},
+	{0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1},
+	{0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0},
+	{0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0},
+	{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0},
+	{0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
+	{0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0},
+	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+	{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+};
 
 char crown[3][7] = {
 	{0,1,0,1,1,0,1},
@@ -140,6 +163,29 @@ char neckTie[4][6] = {
 	{0,0,0,0,1,0},
 	{0,0,0,0,1,0},
 	{0,0,0,0,0,0}
+};
+
+char warrenGlasses[2][10] = {
+	{1,1,0,0,0,0,0,0,1,1},
+	{1,1,0,0,0,0,0,0,1,1}
+};
+
+char warrenNeckTie[8][6] = {
+	{1,1,1,1,1,1},
+	{0,1,1,1,1,0},
+	{0,0,1,1,0,0},
+	{0,1,1,1,1,0},
+	{1,1,1,1,1,1},
+	{1,1,1,1,1,1},
+	{0,1,1,1,1,0},
+	{0,0,1,1,0,0},
+};
+
+char warrenCrown[4][8] = {
+	{1,0,0,1,1,0,0,1},
+	{1,1,0,1,1,0,1,1},
+	{1,1,1,1,1,1,1,1},
+	{1,1,1,1,1,1,1,1}
 };
 
 void gameOver() 
@@ -450,4 +496,198 @@ void isGoal() {
 			break;
 		}
 	}
+}
+
+int isWarrenBuffit() {	// 보유 투자 종목 30개 이상, 수익률 100% 이상, 생존 시간 90초 이상 -> 워렌버핏! -> 게임 종료
+	int property = 0;
+	clock_t now = clock();
+	double survive = (double)(now - warrenStart);
+
+	for (int b = 0; b < 5; b++)
+		property += QuantityList[b];
+
+	if (coin >= warrenSeed * 2 && property >= 30 && survive >= 90000) {
+		return 1;
+	}
+	return 0;
+}
+
+void drawWarrenBuffit() {
+	gotoxy(27, 27);
+	printf("업적");
+	gotoxy(27, 29);
+	printf("○ 보유 투자 종목 5개 이상");
+	gotoxy(27, 30);
+	printf("○ 보유 투자 종목 15개 이상");
+	gotoxy(27, 31);
+	printf("○ 보유 투자 종목 30개 이상");
+	gotoxy(27, 33);
+	printf("○ 수익률 10%% 이상");
+	gotoxy(27, 34);
+	printf("○ 수익률 50%% 이상");
+	gotoxy(27, 35);
+	printf("○ 수익률 100%% 이상");
+	gotoxy(27, 37);
+	printf("○ 생존 시간 30초 이상");
+	gotoxy(27, 38);
+	printf("○ 생존 시간 60초 이상");
+	gotoxy(27, 39);
+	printf("○ 생존 시간 90초 이상");
+	Sleep(600);
+
+	textcolor(11);
+	gotoxy(27, 29);
+	printf("● 보유 투자 종목 5개 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 30);
+	printf("● 보유 투자 종목 15개 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 31);
+	printf("● 보유 투자 종목 30개 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 33);
+	printf("● 수익률 10%% 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 34);
+	printf("● 수익률 50%% 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 35);
+	printf("● 수익률 100%% 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 37);
+	printf("● 생존 시간 30초 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 38);
+	printf("● 생존 시간 60초 이상");
+	Sleep(300);
+	textcolor(15);
+
+	textcolor(11);
+	gotoxy(27, 39);
+	printf("● 생존 시간 90초 이상");
+	Sleep(300);
+	textcolor(15);
+
+	system("cls");
+
+	Sleep(300);
+
+	int i;
+	int j;
+	int  k;
+	for (i = 0; i < 20; i++) {
+		for (j = 0; j < 20; j++) {
+			gotoxy(30 + j, 10 + i);
+			if (antFace[i][j] == 1) {
+				printf("■");
+			}
+		}
+	}
+
+	gotoxy(0, 10 + 5);
+	textcolor(4);
+	for (i = 0; i < 36; i++) {
+		for (j = 0; j < 2; j++) {
+			for (k = 0; k < 10; k++) {
+				gotoxy(0 + i + k, 10 + 5 + j);
+				textcolor(4);
+				if (warrenGlasses[j][k] == 1) {
+					printf("■");
+				}
+			}
+		}
+		Sleep(200);
+		if (i == 35) {
+			break;
+		}
+		for (j = 0; j < 2; j++) {
+			for (k = 0; k < 10; k++) {
+				gotoxy(0 + i + k, 10 + 5 + j);
+				if (warrenGlasses[j][k] == 1) {
+					printf("  ");
+				}
+			}
+		}
+		textcolor(15);
+		for (j = 0; j < 20; j++) {
+			for (k = 0; k < 20; k++) {
+				gotoxy(30 + k, 10 + j);
+				if (antFace[j][k] == 1) {
+					printf("■");
+				}
+			}
+		}
+	}
+	;
+	textcolor(9);
+	for (i = 0; i < 5; i++) {
+		for (j = 0; j < 8; j++) {
+			for (k = 0; k < 6; k++) {
+				gotoxy(30 + 7 + k, 32 - i + j);
+				if (warrenNeckTie[j][k] == 1) {
+					printf("■");
+				}
+			}
+		}
+		if (i == 4) {
+			break;
+		}
+		Sleep(200);
+		for (j = 0; j < 10; j++) {
+			for (k = 0; k < 6; k++) {
+				gotoxy(30 + 7 + k, 32 - i + j);
+				if (warrenNeckTie[j][k] == 1) {
+					printf("  ");
+				}
+			}
+		}
+	}
+
+	textcolor(6);
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 4; j++) {
+			for (k = 0; k < 8; k++) {
+				gotoxy(30 + 6 + k, 1 + i + j);
+				if (warrenCrown[j][k] == 1) {
+					printf("■");
+				}
+			}
+		}
+		if (i == 7) {
+			break;
+		}
+		Sleep(200);
+		for (j = 0; j < 4; j++) {
+			for (k = 0; k < 8; k++) {
+				gotoxy(30 + 6 + k, 1 + i + j);
+				if (warrenCrown[j][k] == 1) {
+					printf("  ");
+				}
+			}
+		}
+	}
+	Sleep(100);
+	gotoxy(60, 10);
+	printf("당신은 개미계의 워렌버핏입니다.");
 }

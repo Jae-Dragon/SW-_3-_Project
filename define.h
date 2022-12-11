@@ -5,10 +5,12 @@
 #define Market_ORIGIN_X 60
 #define Market_ORIGIN_Y 14
 clock_t start;
+clock_t warrenStart; // 업적 측정을 위한 시작 시간
 
 int distance = 0;//비거리에 따른 거래소 호출을 위해 호출
 int coin;
 int seed;
+int warrenSeed; // 업적 측정을 위한 최초의 시드 머니
 char name[10]; // 플레이어 이름
 int level; // 선택된 난이도
 double life = 100.0;
