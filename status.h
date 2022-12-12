@@ -21,7 +21,7 @@ void statInfo()
 
 	SetCurrentCursorPos(5, 4);
 
-	printf("COIN : %d", coin);
+	printf("COIN : %5d", coin);
 
 	SetCurrentCursorPos(25, 4);
 
