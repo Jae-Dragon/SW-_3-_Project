@@ -27,15 +27,29 @@ void statInfo()
 
 	textcolor(12);
 	printf("♥ : ");
-	for (i = 0; i < life; i++) {
-		printf("/");
+	if (life <= 100) {
+		for (i = 0; i < life; i++) {
+			printf("/");
+		}
+		// 라이프바 cls 실행안될때도 빠르게 업데이트를 위함.
+		for (i = 0; i < 100 - life; i++) {
+			printf(" ");
+		}
+	}
+	else { // life가 넘치는 경우
+		for (i = 0; i < 100; i++) {
+			printf("/");
+		}
+		SetCurrentCursorPos(30, 5);
+		for (i = 100; i < life; i++) {
+			printf("/");
+		}
+		for (i = 0; i < 100 - (life-100); i++) {
+			printf(" ");
+		}
 	}
 	textcolor(15);
-	// 라이프바 cls 실행안될때도 빠르게 업데이트를 위함.
-	for (i = 0; i < 100 - life; i++) {
-		printf(" ");
-	}
-
+	
 	SetCurrentCursorPos(5, 2);
 	printf("NAME : ");
 	for (i = 0; i < 10; i++) {
@@ -464,7 +478,7 @@ void gameOver()
 		}
 
 
-		getch();
+		getch(); 
 
 
 		
@@ -691,4 +705,6 @@ void drawWarrenBuffit() {
 	Sleep(100);
 	gotoxy(60, 10);
 	printf("당신은 개미계의 워렌버핏입니다.");
+	
+	getch();
 }

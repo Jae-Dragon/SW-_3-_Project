@@ -79,14 +79,14 @@ void setLevel()
         {
             coin = 30000;
             seed = 30000;
-            speed = 100;
+            speed = 50;
             break; 
         }
         else if (level == 1) // 난이도 보통
         {
             coin = 10000;
             seed = 10000;
-            speed = 50;
+            speed = 35;
             break;
         }
      
@@ -94,7 +94,7 @@ void setLevel()
         {
             coin = 5000;
             seed = 5000;
-            speed = 10;
+            speed = 20;
             break;
         }
         else
@@ -344,11 +344,10 @@ void movingAnt()
         if (hurdleX == 45) DeleteHurdleText();
 
 
-        for (int i = 0; i < 20; i++)
-        {
+       
             if (_kbhit() != 0)
             {
-                int key = _getch();
+                int key = _getch(); 
                 switch (key)
                 {
                     case SPACE:
@@ -377,6 +376,16 @@ void movingAnt()
                             pur_heart += 5000;
                         }
                         break;
+                    case 'ㅔ': // 한글일 때 안됨
+                        if (coin >= pur_heart)
+                        {
+                            coin -= pur_heart;
+                            life += 20;
+                            pur_heart += 5000;
+                        }
+                        break;
+                    default :
+                        break;
 
               
                         
@@ -384,10 +393,12 @@ void movingAnt()
                 }
             }
             
+            Sleep(speed);
             
-        }
+            
+        
     
-        Sleep(speed);
+        
         /*
         if (GetKeyDown() == 'p' || GetKeyDown() == 'P' || GetKeyDown() == 'ㅔ' || GetKeyDown() == 'ㅖ')
         {
