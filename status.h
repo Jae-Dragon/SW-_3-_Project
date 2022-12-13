@@ -520,7 +520,7 @@ int isWarrenBuffit() {	// 보유 투자 종목 30개 이상, 수익률 100% 이상, 생존 시간 
 	for (int b = 0; b < 5; b++)
 		property += QuantityList[b];
 
-	if (coin >= warrenSeed * 2 && property >= 30 && time_s >= 90) {
+	if (rate >= 100 && property >= 30 && time_s >= 90) {
 		return 1;
 	}
 	return 0;

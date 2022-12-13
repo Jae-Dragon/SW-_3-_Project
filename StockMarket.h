@@ -180,7 +180,7 @@ void DrawingList(int x, int y)
 	printf("자동차: %2d", QuantityList[4]);
 	// 언약
 	gotoxy(x, y + 8);
-	printf("생명력 구매 'p' : %d coin",pur_heart);
+	printf("생명력 구매 'Tab' : %d coin",pur_heart);
 }
 void EraseList(int x, int y)
 {

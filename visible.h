@@ -169,17 +169,17 @@ void Title()
     gotoxy(1, 24);
     printf("                │     ┌──────┐                         │");
     gotoxy(1, 25);
-    printf("                │     └──────┘   :   점프              │");
+    printf("                │     └──────┘        :   점프         │");
     gotoxy(1, 26);
     printf("                │    스베이스 바                       │");
     gotoxy(1, 27);
     printf("                │                                      │");
     gotoxy(1, 28);
-    printf("                │       ┌──┐                           │");
+    printf("                │    ┌──────────┐                      │");
     gotoxy(1, 29);
-    printf("                │       │ P│     :   생명력 구매       │");
+    printf("                │    │ →  Tab  │     :   생명력 구매  │");
     gotoxy(1, 30);
-    printf("                │       └──┘                           │");
+    printf("                │    └──────────┘                      │");
     gotoxy(1, 31);
     printf("                └──────────────────────────────────────┘");
     
@@ -360,6 +360,7 @@ void movingAnt()
                         
                         
                         break;
+                        /*
                     case 'p':
                         if (coin >= pur_heart)
                         {
@@ -376,7 +377,8 @@ void movingAnt()
                             pur_heart += 5000;
                         }
                         break;
-                    case 'ㅔ': // 한글일 때 안됨
+                        */
+                    case 9 : // Tab
                         if (coin >= pur_heart)
                         {
                             coin -= pur_heart;
