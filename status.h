@@ -478,7 +478,11 @@ void gameOver()
 		}
 
 
-		getch(); 
+		while (1)
+		{
+			getch();
+		}
+
 
 
 		
